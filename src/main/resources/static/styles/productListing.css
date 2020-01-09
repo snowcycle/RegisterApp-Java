@@ -1,0 +1,30 @@
+.productsWrapper {
+	display: inline-block;
+}
+
+.products {
+	margin: 0 0 2em 0;
+	list-style-type: none;
+	padding: 0;
+	width: 15em;
+}
+
+.products li {
+	cursor: pointer;
+	background-color: #EEE;
+	margin: .5em;
+	padding: .3em;
+	height: 3.5em;
+	border-radius: 4px;
+	text-align: left;
+}
+
+.products li:hover {
+	color: #607D8B;
+	background-color: #DDD;
+	left: .1em;
+}
+
+a.button {
+	text-decoration: none;
+}

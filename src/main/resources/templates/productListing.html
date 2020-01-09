@@ -1,0 +1,60 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Products</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="/styles/productListing.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/productListing.js" defer></script>
+</head>
+
+<body>
+	<div class="header">
+		<h1 class="primary-message">Products Listing</h1>
+	</div>
+
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div class="productsWrapper">
+			<div>
+				<a href="/productDetail/" class="button">Create New</a>
+			</div>
+
+			<br /><br />
+
+			<ul id="productsListing" class="products">
+				<li th:each="product : ${products}">
+					<input type="hidden" name="productId" th:value="${product.id}" />
+					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
+					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
+					<br />&nbsp;&nbsp;<span class="productCreatedOnDisplay" th:text="${product.createdOn}">12/31/1999</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="hidden">
+			<input type="checkbox" id="isRefreshed" class="hidden">
+			<script type="text/javascript">
+				window.onunload = function() {
+					const isRefreshedElement = document.getElementById("isRefreshed");
+
+					if(!isRefreshedElement.checked) {
+						isRefreshedElement.checked = true;
+					} else {
+						isRefreshedElement.checked = false;
+						location.reload();
+					}
+				}
+			</script>
+		</div>
+	</div>
+		
+</body>
+
+</html>

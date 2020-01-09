@@ -1,0 +1,74 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Product</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="/styles/productDetail.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/productDetail.js" defer></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="primary-message">Product Detail</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div class="productDetailWrapper">
+			<table id="productDetails">
+				<tbody>
+					<tr class="hidden">
+						<td>ID:</td>
+						<td>
+							<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Lookup Code:</td>
+						<td>
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Count:</td>
+						<td>
+							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="productActionsWrapper">
+			<br />
+			<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
+				<button id="deleteButton" type="button" class="action">Delete</button>
+				<br />
+				<br />
+			</div>
+			<button id="saveButton" type="button" class="action">Save</button>
+		</div>
+
+		<div id="productSavedAlertModal" class="modal animate-opacity-show">
+			<div class="modal-content">
+				<div class="container gray-blue">
+					<h1>
+						<span>Product</span><br />
+						<span>Saved</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+</body>
+
+</html>
