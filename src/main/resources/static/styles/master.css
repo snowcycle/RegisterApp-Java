@@ -30,6 +30,24 @@ td.hidden {
 	display: none
 }
 
+div.footer {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+img.footer {
+	z-index: 1;
+	height: 50px;
+    text-decoration: none;
+    display: inline-block;
+	cursor: pointer;
+	position: fixed;
+	right: 20;
+	bottom: 20;
+}
+
 div.inputContent,
 form.inputContent {
 	display: inline-block;
