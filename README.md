@@ -7,3 +7,5 @@ To start from the IDE press F5 to run. This will open the debug and run view. Yo
 
  # Landing page (list available products)
 `https://uarkregappjava.herokuapp.com/`
+
+Robert has figured out how to contribute!
