@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.employees.helpers.ActiveEmployeeExistsQuery;
 import edu.uark.registerapp.commands.employees.helpers.EmployeeSignInCommand;
-import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.EmployeeSignIn;
 
@@ -24,8 +23,7 @@ public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
-		@RequestParam final Map<String, String> queryParameters,
-		final HttpServletRequest request
+		@RequestParam final Map<String, String> queryParameters
 	) {
 		try {
 			this.activeEmployeeExistsQuery.execute();
@@ -38,7 +36,7 @@ public class SignInRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView performSignIn(
 		EmployeeSignIn employeeSignIn,
-		HttpServletRequest request
+		final HttpServletRequest request
 	) {
 
 		// TODO: Use the credentials provided in the request body
@@ -51,10 +49,7 @@ public class SignInRouteController extends BaseRouteController {
 			.setSessionKey(request.getSession().getId())
 			.execute();
 		} catch (final Exception e) {
-			return new ModelAndView(ViewNames.SIGN_IN.getViewName())
-												.addObject(
-												ViewModelNames.ERROR_MESSAGE.getValue(),
-												e.getMessage());
+			return this.buildInvalidSessionResponse();
 		}
 
 		return new ModelAndView(

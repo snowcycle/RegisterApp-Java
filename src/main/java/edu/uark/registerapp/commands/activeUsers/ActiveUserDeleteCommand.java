@@ -20,11 +20,10 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
     @Transactional
 	@Override
 	public void execute() {
-		this.validateProperties();
-
 
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.activeUserRepository.findBySessionKey(this.sessionKey);
+		validateProperties(activeUserEntity);
 		if (!activeUserEntity.isPresent()) { // No record with the associated record ID exists in the database.
 			throw new NotFoundException("Active User");
 		}
@@ -33,20 +32,16 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 	}
 
 
-    private void validateProperties() {
-		if (StringUtils.isBlank(this.firstName)) {
-			throw new UnprocessableEntityException("first name");
-        }
-        if (StringUtils.isBlank(this.lastName)) {
-			throw new UnprocessableEntityException("last name");
+    private void validateProperties(final Optional<ActiveUserEntity> activeUserEntity) {
+
+		if (StringUtils.isBlank(activeUserEntity.get().getName())) {
+			throw new UnprocessableEntityException("name");
         }
 	}
 
 
     // Properties
     private String sessionKey;
-    private String firstName;
-    private String lastName;
 
 
 	public String getSessionKey() {
@@ -57,24 +52,6 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 		this.sessionKey = sessionKey;
 		return this;
     }
-    
-    public String getFirstName() {
-		return this.firstName;
-	}
-
-	public ActiveUserDeleteCommand setFirstName(final String firstName) {
-		this.firstName = firstName;
-		return this;
-    }
-    
-    public String getLastName() {
-		return this.lastName;
-	}
-
-	public ActiveUserDeleteCommand setLastName(final String lastName) {
-		this.lastName = lastName;
-		return this;
-	}
 
 	@Autowired
 	private ActiveUserRepository activeUserRepository;

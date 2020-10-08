@@ -1,7 +1,6 @@
 package edu.uark.registerapp.commands.employees.helpers;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -47,7 +46,7 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
 
         final Optional<ActiveUserEntity> queriedActiveUserEntity = 
         this.activeUserRepository
-            .findByEmployeeId(UUID.fromString(this.employeeSignIn.getEmployeeId()));
+            .findByEmployeeId(employeeEntity.get().getId());
 
 		if (queriedActiveUserEntity.isPresent()) {
             queriedActiveUserEntity.get().setSessionKey(this.getSessionKey());
@@ -56,7 +55,7 @@ public class EmployeeSignInCommand implements VoidCommandInterface {
             return this.activeUserRepository.save(new ActiveUserEntity()
                                                     .setClassification(employeeEntity.get().getClassification())
                                                     .setName(employeeEntity.get().getFirstName() + " " + employeeEntity.get().getLastName())
-                                                    .setEmployeeId(UUID.fromString(this.employeeSignIn.getEmployeeId()))
+                                                    .setEmployeeId((employeeEntity.get().getId()))
                                                     .setSessionKey(this.getSessionKey())
                                                     );
         }
