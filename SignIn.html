@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+ <head>
+ <title>Sign In</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	
+<link rel="stylesheet" type="text/css" href="/styles/master.css">
+<link rel="stylesheet" type="text/css" href="/styles/s=SignIn.css">
+
+<script type="text/javascript" src="/scripts/master.js" defer></script>
+<script type="text/javascript" src="/scripts/SignIn.js" defer></script>
+</head>
+<body>
+ <div class="header">
+<h1 class="primary-message">Sign In</h1>
+</div>
+
+<div id="main" class="main">
+<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+</div>
+		
+		
+
+<form action = "/" method = "POST" onsubmit="return ValidationEvent()">
+<input id = "number" type = "number" name = "number"  placeholder = "Employee ID"  th:value="${number}"/> <br>
+<input id = "password" type = "password" name = "password" placeholder = "Password"  /> <br> 
+<input type = "submit" value = "Sign In" />
+</form>
+
+
+
+</body>
+
+</html>
