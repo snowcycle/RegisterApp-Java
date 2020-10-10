@@ -8,9 +8,7 @@
  
      
     <br />
-    <div class="mainMenu">
-       <script>isElevatedUser=true</script>
-      
+<div> 
         <button id="start_TransactionButton" type="button" class="action" >Start Transaction</button>
         <br /><br />
         <button id="view_ProductsButton" type="button" class="action">View Products</button>
@@ -34,40 +32,20 @@
             <button id="Cashier_ReportButton" type="button" class="action">Cashier Report</button>
              <br />
          </div>
+        </div>    
           
     
          
     <div style="float:right">
-        <form align="right" name="form1" method="post" action="">
-          <label class="logoutLblPos"></label>
+        <form align="right" name="form1" method="post" action="/">
             <img id="signOutImg"  style='height:50px' src="power_settings_new-24px.svg" alt="Sign Out" >
         </label>
         </form>
         </div>
-        <script type="text/javascript" src="/scripts/mainMenu.js" ></script>
-        <script type="text/javascript" src="/scripts/master.js" ></script>
-        <script>
-
-            
-window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("start_TransactionButton").addEventListener("click", function() {
-        displayError("Functionality has not yet been implemented");
-    });  
-    document.getElementById("view_ProductsButton").addEventListener("click", function() {
-        location.assign("/productListing")});
-    document.getElementById("Create_EmployeeButton").addEventListener("click", function() {
-        location.assign("/employeeDetail")});
-    document.getElementById("Sales_ReportButton").addEventListener("click", function() {
-        displayError("Functionality has not yet been implemented")});
-    document.getElementById("Cashier_ReportButton").addEventListener("click", function() {
-        displayError("Functionality has not yet been implemented")});
-    document.getElementById("signOutImg").addEventListener("click", function() {
-            location.assign("/")});
-    }); 
-
-        </script>
-    
-    
+        <script type="text/javascript" src="file:///C:/Users/NARMINE%20BEN%20AISSA/Desktop/Fall2020/CSCE%203513/Sprint2-V1/scripts/mainMenu.js" ></script>
+        <script type="text/javascript" src="file:///C:/Users/NARMINE%20BEN%20AISSA/Desktop/Fall2020/CSCE%203513/Sprint2-V1/scripts/master.js" ></script>
+ 
+   
    
 </body>
 </html>

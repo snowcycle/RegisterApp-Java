@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", ()=>{
-
+    if (document.getElementById("signOutImg") !=null){
     document.getElementById("signOutImg").addEventListener("click", function() {
-        //location.assign("/")});
-        ajaxDelete(resourceRelativeUri , callback) {
-            
+		ajaxDelete("/api/signOut" , (callbackResponse) => {
+			if ((callbackResponse.data ==null) ||(callbackResponse.data.redirectUrl == null) ||(callbackResponse.data.redirectUrl == "")){
+				window.location.replace("/");
+			}
 
-        }
+			else {
+				window.location.replace(callbackResponse.data.redirectUrl);
+		}
+	});
 
-});
 
 // AJAX
 function ajaxGet(resourceRelativeUri, callback) {

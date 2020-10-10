@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         displayError("Functionality has not yet been implemented")});
     document.getElementById("Cashier_ReportButton").addEventListener("click", function() {
         displayError("Functionality has not yet been implemented")});
-    document.getElementById("signOutImage").addEventListener("click", function() {
+    document.getElementById("signOutImg").addEventListener("click", function() {
             location.assign("/")});
     }); 
+
