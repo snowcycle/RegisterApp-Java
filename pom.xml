@@ -51,7 +51,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
@@ -81,4 +80,8 @@
 		</plugins>
 	</build>
 
+<<<<<<< HEAD
 </project>
+=======
+</project>
+>>>>>>> 864db1b3a6d091b203b8113235e567e6a1447e0d
