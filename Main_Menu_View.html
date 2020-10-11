@@ -14,7 +14,8 @@
         <button id="view_ProductsButton" type="button" class="action">View Products</button>
         <br /><br />
 
-        <div th:if="not ${isElevatedUser}">
+       <div th:switch="${isElevatedUser} ? ${true} : ${false} ">
+        <span th:case="${false}">
         <p hidden>
         <button id="Create_EmployeeButton" type="button" class="action">Create Employee</button>
         <br /><br />
@@ -23,7 +24,9 @@
         <button id="Cashier_ReportButton" type="button" class="action">Cashier Report</button>
          <br />
          </p>
+        </span>
         </div>
+        <span th:case="${true}">
          <div th:unless="${isElevatedUser}" >
             <button id="Create_EmployeeButton" type="button" class="action">Create Employee</button>
             <br /><br />
@@ -32,8 +35,10 @@
             <button id="Cashier_ReportButton" type="button" class="action">Cashier Report</button>
              <br />
          </div>
+        </span>
         </div>    
-          
+        
+        
     
          
     <div style="float:right">
@@ -43,7 +48,9 @@
         </form>
         </div>
         <script type="text/javascript" src="file:///C:/Users/NARMINE%20BEN%20AISSA/Desktop/Fall2020/CSCE%203513/Sprint2-V1/scripts/mainMenu.js" ></script>
-        <script type="text/javascript" src="file:///C:/Users/NARMINE%20BEN%20AISSA/Desktop/Fall2020/CSCE%203513/Sprint2-V1/scripts/master.js" ></script>
+        <script type="text/javascript" src="file:///C:/Users/NARMINE%20BEN%20AISSA/Desktop/Fall2020/CSCE%203513/Sprint2-V1/scripts/master.js" >
+        
+        </script>
  
    
    

@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     if (document.getElementById("signOutImg") !=null){
     document.getElementById("signOutImg").addEventListener("click", function() {
-		ajaxDelete("/api/signOut" , (callbackResponse) => {
-			if ((callbackResponse.data ==null) ||(callbackResponse.data.redirectUrl == null) ||(callbackResponse.data.redirectUrl == "")){
+		ajaxDelete("/signOut" , (callbackResponse) => {
+			if ((callbackResponse.data ==null)){
 				window.location.replace("/");
 			}
-
 			else {
 				window.location.replace(callbackResponse.data.redirectUrl);
 		}
