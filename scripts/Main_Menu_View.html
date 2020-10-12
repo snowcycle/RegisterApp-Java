@@ -1,0 +1,54 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Main Menu</title>
+   
+</head>
+<body>
+ 
+     
+    <br />
+    <div class="mainMenu">
+       <script>isElevatedUser=true</script>
+      
+        <button id="start_TransactionButton" type="button" class="action" >Start Transaction</button>
+        <br /><br />
+        <button id="view_ProductsButton" type="button" class="action">View Products</button>
+        <br /><br />
+
+        <div th:if="not ${isElevatedUser}">
+        <p hidden>
+        <button id="Create_EmployeeButton" type="button" class="action">Create Employee</button>
+        <br /><br />
+        <button id="Sales_ReportButton" type="button" class="action">Sales Report    </button>
+        <br /><br />
+        <button id="Cashier_ReportButton" type="button" class="action">Cashier Report</button>
+         <br />
+         </p>
+        </div>
+         <div th:unless="${isElevatedUser}" >
+            <button id="Create_EmployeeButton" type="button" class="action">Create Employee</button>
+            <br /><br />
+            <button id="Sales_ReportButton" type="button" class="action">Sales Report    </button>
+            <br /><br />
+            <button id="Cashier_ReportButton" type="button" class="action">Cashier Report</button>
+             <br />
+         </div>
+          
+    
+         
+    <div style="float:right">
+        <form align="right" name="form1" method="post" action="">
+          <label class="logoutLblPos"></label>
+            <img id="signOutImg"  style='height:50px' src="power_settings_new-24px.svg" alt="Sign Out" >
+        </label>
+        </form>
+        </div>
+        <script type="text/javascript" src="/scripts/mainMenu.js" ></script>
+        <script type="text/javascript" src="/scripts/master.js" ></script>
+    
+    
+   
+</body>
+</html>
+
