@@ -46,10 +46,30 @@ public class EmployeeSignInCommand {
 		}
 	}
 
-	
+	@Transactional
+	private EmployeeEntity signIn() {
+		int empId = Integer.parseInt(this.employeeSignIn.getEmployeeId());
+		EmployeeEntity empEntity = this.employeeRepository.findByEmployeeId(empId);
+		if (!this.employeeRepository.existsByEmployeeId(empId)) {            //couldn't figure out array check for passwords
+			throw new NotFoundException("Employee ID");
+		}
+
+		ActiveUserEntity activeUserEntity = this.activeUserRepository.findByEmployeeId(empId);
+		//if activeUserEntity exists
+		if (activeUserRepository.existsById(empEntity.getId())) {
+			this.activeUserRepository.save(activeUserEntity.get().setSessionKey(this.sessionKey));
+		} else {
+			this.activeUserRepository.save((new ActiveUserEntity()).setSessionKey(this.sessionKey).setEmployeeId(empEntity.get().getId()).setClassification(empEntity.get().getClassification()).setName(empEntity.get().getFirstName().concat(" ").concat(empEntity.get().getLastName())));
+		}
+		return empEntity.get();
+	}
+
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+
+	@Autowired
+	private ActiveUserRepository activeUserRepository;
 
 	
 }
