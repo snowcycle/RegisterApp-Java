@@ -6,3 +6,6 @@ mvnw
 mvnw.cmd
 target/
 
+/src/main/resources/application-test.properties
+/.idea/
+/registerapp.iml
