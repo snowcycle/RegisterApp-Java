@@ -20,7 +20,9 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-
+		<div>
+			<a href="/mainMenu/" class="button">Main Menu</a>
+		</div>
 		<div class="productsWrapper">
 			<div>
 				<a href="/productDetail/" class="button">Create New</a>
