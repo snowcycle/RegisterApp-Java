@@ -34,7 +34,7 @@ public class MainMenuRouteController extends BaseRouteController {
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
 				queryParameters);
-
+			//start
 		// TODO: Examine the ActiveUser classification if you want this information
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
