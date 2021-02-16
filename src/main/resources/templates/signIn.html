@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org"> //sprint2 task3 
+<html xmlns:th="https://www.thymeleaf.org"> <!- sprint2 task2,3 ->
 
 <head>
 	<title>Register - Sign In</title>
@@ -26,7 +26,7 @@
 			<label>Password :</label>
 			<input id="pass" name="pass" placeholder="Password" type="text">
 		</div>
-		<input type="submit" value="Submit">
+		<input type="submit" value="Sign In">
 		</form>
 		
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
