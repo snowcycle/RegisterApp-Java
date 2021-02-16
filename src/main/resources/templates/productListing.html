@@ -22,7 +22,7 @@
 		</div>
 
 		<div class="productsWrapper">
-			<div>
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
 				<a href="/productDetail/" class="button">Create New</a>
 			</div>
 
@@ -53,6 +53,10 @@
 				}
 			</script>
 		</div>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 		
 </body>
