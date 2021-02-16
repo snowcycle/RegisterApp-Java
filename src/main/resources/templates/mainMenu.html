@@ -17,6 +17,14 @@
 	</div>
 		
 	<div id="main" class="main">
+		<body>
+        	<button type=“button” onclick="location.href='https://github.com/csce3513ProjectGroup/RegisterApp-Java/tree/Sprint2-Yugo/src/main/resources/templates'">Start Transaction</button>
+        	<button type=“button” onclick="location.href='https://github.com/csce3513ProjectGroup/RegisterApp-Java/blob/Sprint2-Yugo/src/main/resources/templates/productListing.html'">View Products</button>
+        	<button type=“button” onclick="location.href='https://github.com/csce3513ProjectGroup/RegisterApp-Java/blob/Sprint2-Yugo/src/main/resources/templates/productDetail.html'">Create Employee</button>
+        	<button type=“button” onclick="location.href='https://github.com/csce3513ProjectGroup/RegisterApp-Java/tree/Sprint2-Yugo/src/main/resources/templates'">Sales Report</button>
+        	<button type=“button” onclick="location.href='https://github.com/csce3513ProjectGroup/RegisterApp-Java/tree/Sprint2-Yugo/src/main/resources/templates'">Cashier Report</button>
+    		</body>
+		
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
