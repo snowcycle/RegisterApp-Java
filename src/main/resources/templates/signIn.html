@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org"> 
+<html xmlns:th="https://www.thymeleaf.org"> //sprint2 task3 
 
 <head>
 	<title>Register - Sign In</title>
@@ -9,14 +9,6 @@
 	<script type="text/javascript" src="/scripts/master.js" defer></script>
 	<script type="text/javascript" src="/scripts/signIn.js" defer></script>
 </head>
-
-<form onsubmit="myFunction()">
-  Employee ID: <input type="text">
-  <input type="submit">
-
-  Password: <input type="text">
-  <input type="submit">
-</form>
 	
 <body>
 
@@ -25,6 +17,18 @@
 	</div>
 		
 	<div id="main" class="main">
+		<form action="#" method="post" onsubmit="return ValidationEvent()">
+		<div>
+			<label>Employee ID :</label>
+			<input id="employeeId" name="employeeId" placeholder="Emplyee ID" type="text">
+		</div>
+		<div>
+			<label>Password :</label>
+			<input id="pass" name="pass" placeholder="Password" type="text">
+		</div>
+		<input type="submit" value="Submit">
+		</form>
+		
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
