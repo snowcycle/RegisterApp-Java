@@ -8,4 +8,10 @@ public class ActiveEmployeeExistsQuery implements EmployeeRepository{
     public boolean existsByIsActive(boolean isActive){
         return isActive;
     }
+
+    public void checkIfActive(boolean isActive){
+        if(!isActive){
+            throw new NotFoundException();
+        }
+    }
 }
