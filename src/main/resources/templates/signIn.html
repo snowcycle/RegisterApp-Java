@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org"> <!- sprint2 task2,3 ->
+<html xmlns:th="https://www.thymeleaf.org"> <!-- sprint2 task2,3 -->
 
 <head>
 	<title>Register - Sign In</title>
@@ -17,24 +17,25 @@
 	</div>
 		
 	<div id="main" class="main">
-		<form action="#" method="post" onsubmit="return ValidationEvent()">
-		<div>
-			<label>Employee ID :</label>
-			<input id="employeeId" name="employeeId" placeholder="Emplyee ID" type="text">
-		</div>
-		<div>
-			<label>Password :</label>
-			<input id="pass" name="pass" placeholder="Password" type="text">
-		</div>
-		<input type="submit" value="Sign In">
-		</form>
-		
-		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''"> <!-- here is hidden message -->
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-
-		<form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
+		
+		<form action="#" method="post" onsubmit="return ValidationEvent()">
 			<!-- TODO: Form input elements -->
+			<!-- below are blank text for Employee ID and Password -->
+
+			<div>
+			<label>Employee ID :</label>
+			<input id="employeeId" name="employeeId" placeholder="Emplyee ID" type="text">
+			</div>
+
+			<div>
+			<label>Password :</label>
+			<input id="password" name="password" placeholder="Password" type="text">
+			</div>
+
+			<button onclick="validateForm(); return false;">Sign In</button><br>
 		</form>
 	</div>
 		
