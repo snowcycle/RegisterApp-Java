@@ -22,13 +22,17 @@
     </div>
 
     <form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
-        <form>
-            <label>Employee ID:</label><br>
-            <input type="number"/><br>
-            <label>Password:</label><br>
-            <input type="password"/><br><br>
-            <input type="submit" value="Sign in"><br>
-        </form>
+        <div>
+            <input id="employeeId" type="number" name="employeeId" placeholder="Employee ID" class="update" th:value="${employeeId}" />
+        </div>
+        <br />
+        <div>
+            <input id="password" type="password" name="password" placeholder="Password" class="update" />
+        </div>
+        <br /><br />
+        <div>
+            <input type="submit" value="Sign In" class="submit" />
+        </div>
     </form>
 </div>
 
