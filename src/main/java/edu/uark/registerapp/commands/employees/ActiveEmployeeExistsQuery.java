@@ -8,7 +8,7 @@ import edu.uark.registerapp.commands.exceptions.NotFoundException;
 public class ActiveEmployeeExistsQuery implements EmployeeRepository{
     @Override
     public void checkIfActive(){
-        boolean isActive = existsByIsActive(isActive);
+        boolean isActive = employeeRepository.existsByIsActive(isActive);
         if(!isActive){
             throw new NotFoundException("Employee");
         }
