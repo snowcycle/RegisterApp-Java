@@ -16,21 +16,8 @@ import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
-// @Controller
-// // methods
-// public class MainMenuRouteController {
-// 	// @GetMapping("/mainMenu")
-// 	// @ResponseBody
-// 	// public String getMainMenu()// @RequestParam Map<String, String> object)
-// 	// {
-// 	/// nhnhn
-// 	// }
-// 	// methods
 
-// }
-
-// Properties
-
+@Controller
 @RequestMapping(value = "/mainMenu")
 public class MainMenuRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
