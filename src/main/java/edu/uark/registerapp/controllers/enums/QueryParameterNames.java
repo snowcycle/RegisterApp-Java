@@ -2,8 +2,7 @@ package edu.uark.registerapp.controllers.enums;
 
 public enum QueryParameterNames {
 	NOT_DEFINED(""),
-	ERROR_CODE("errorCode"),
-	EMPLOYEE_ID("employeeId");
+	ERROR_CODE("errorCode");
 	
 	public String getValue() {
 		return value;
