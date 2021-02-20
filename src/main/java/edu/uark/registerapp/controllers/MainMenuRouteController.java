@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 
 @Controller
-@RequestMapping(value="/mainMenu")
+@RequestMapping(value={"/mainMenu", "/"})
 public class MainMenuRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
@@ -24,7 +24,7 @@ public class MainMenuRouteController {
 		final HttpServletRequest httpServletRequest
 	) {
 		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName());
-		
+		// modelAndView.addObject(ERROR_MESSAGE, attributeValue)
 		return modelAndView;
 	}
 }
