@@ -23,7 +23,7 @@ public class MainMenuRouteController {
 		@RequestParam Map<String, String> queryParameters,
 		final HttpServletRequest httpServletRequest
 	) {
-		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName());
+		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName(), queryParameters);
 		// modelAndView.addObject(ERROR_MESSAGE, attributeValue)
 		return modelAndView;
 	}
