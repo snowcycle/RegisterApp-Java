@@ -1,6 +1,7 @@
 div.header {
 	padding-top: 1px;
 	text-align: right;
+	color: white;
 }
 
 div.main {
@@ -77,20 +78,16 @@ input.update {
 button.action,
 a.button,
 input.submit {
-    margin: 0;
-    border: 0;
     font-size: 18px;
-    width: 200px;
-    height: 50px;
     text-align: center;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-user-select: none;
-    color: #000000;
-    border: solid;
-    padding: 10px;
-    background-color: #FFFFFF;
+    color: #f0f2f5;
+    border: solid #3a69b0;
+    padding-top: 25px;
+    background-color: #214d9e;
     cursor: default;
 	text-decoration: none;
 }
@@ -99,8 +96,8 @@ button.action:hover,
 a.button:hover,
 input.submit:hover {
     cursor: pointer;
-    color: #ffffff;
-    background-color: #000000;
+    color: #214d9e;
+    background-color: #f0f2f5;
 }
 
 /* Table style definitions */
