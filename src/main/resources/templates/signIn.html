@@ -11,9 +11,19 @@
 </head>
 	
 <body>
+<style>
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+</style>
 
-	<div class="header">
-		<h1 class="primary-message">Sign In</h1>
+	<body bgcolor="#54221a"><br><br>
+		<div class="header">
+<table align="center" cellpadding="50" border="1" bgcolor="#aabb91" width="720"><tbody><tr><td>
+		<h1 class="primary-message" align="center">My GPA Needs An A</h1>
 	</div>
 		
 	<div id="main" class="main">
@@ -24,18 +34,26 @@
 		<form action="#" method="post" onsubmit="return ValidationEvent()">
 			<!-- TODO: Form input elements -->
 			<!-- below are blank text for Employee ID and Password -->
-
+		
+			<body bgcolor="#54221a"><br><br>
+			<table align="center" cellpadding="2" border="1" bgcolor="#ffbb91" width="400"><tbody><tr><td>
+			
+			<h2 align="center" class="primary-message">sign in</h2>
+	
 			<div>
-			<label>Employee ID :</label>
+			<label>&emsp; &emsp;Employee ID :</label>
 			<input id="employeeId" name="employeeId" placeholder="Emplyee ID" type="text">
-			</div>
+			</div><br>
 
 			<div>
-			<label>Password :</label>
+			<label>&emsp; &emsp; &emsp;Password :</label>
 			<input id="password" name="password" placeholder="Password" type="text">
 			</div>
 
+			<div class="center">
 			<button onclick="validateForm(); return false;">Sign In</button><br>
+			</div>
+				
 		</form>
 	</div>
 		
