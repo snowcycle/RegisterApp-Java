@@ -18,16 +18,19 @@ public class EmployeeHelper {
                 : employeeIdAsString);
     }
 
+    // Password hashing for employees
     public static byte[] hashPassword(final String password) {
-        // This exception should maybe not be handled within the method
+
+        // This NoSuchAlgorithmException should maybe not be handled within the method
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            final MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+
             // Convert password string to byte array
-            byte [] passwordBytes = password.getBytes(StandardCharsets.UTF_8);
-            return messageDigest.digest(passwordBytes);
-        } catch(NoSuchAlgorithmException e){
+            messageDigest.update(password.getBytes());
+            return messageDigest.digest();
+        } catch(final NoSuchAlgorithmException e){
             // I don't know how to handle errors but this probably won't happen anyway
-            System.out.println("Sorry, SHA-256 doesn't exist actually");
+            System.out.println("SHA-256 is not valid");
             return new byte[0];
         }
     }

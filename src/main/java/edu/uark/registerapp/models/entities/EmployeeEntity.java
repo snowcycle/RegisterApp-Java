@@ -25,6 +25,7 @@ public class EmployeeEntity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private final UUID id;
 
+    // Getters and setters
     public UUID getId() {
         return this.id;
     }
@@ -116,6 +117,7 @@ public class EmployeeEntity {
     public LocalDateTime getCreatedOn() {
         return this.createdOn;
     }
+    // End getters and setters
 
     public Employee synchronize(final Employee apiEmployee) {
         this.setIsActive(apiEmployee.getIsActive());

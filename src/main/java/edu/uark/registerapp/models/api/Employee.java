@@ -11,6 +11,8 @@ import edu.uark.registerapp.models.entities.EmployeeEntity;
 
 public class Employee extends ApiResponse {
     private UUID id;
+
+    // Getters and setters
     public UUID getId() {
         return this.id;
     }
@@ -109,6 +111,7 @@ public class Employee extends ApiResponse {
         this.isInitialEmployee = isInitialEmployee;
         return this;
     }
+    // End getters and setters
 
     public Employee() {
         super();
