@@ -41,4 +41,3 @@ function getPasswordEditElement() {
 function getEmployeeIdEditElement() {
 	return document.getElementById("employeeId");
 }
-//End getters and setters
