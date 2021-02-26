@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const productListElements = document.getElementById("productsListing").children;
-	
+	getViewProductsActionElement().addEventListener(
+		"click",
+		() => { window.location.assign("/productListing");  console.log("shrekswasf");});
 });
+
+function getViewProductsActionElement() {
+	return document.getElementById("viewProductsButton");
+}
+
