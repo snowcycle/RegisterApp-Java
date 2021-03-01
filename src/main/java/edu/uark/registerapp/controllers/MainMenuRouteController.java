@@ -26,18 +26,18 @@ public class MainMenuRouteController extends BaseRouteController {
 		final HttpServletRequest request
 	) {
 
-		// final Optional<ActiveUserEntity> activeUserEntity =
-		// 	this.getCurrentUser(request);
-		// if (!activeUserEntity.isPresent()) {
-		// 	return this.buildInvalidSessionResponse();
-		// }
+		final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(request);
+		if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+		}
 		
-		// ModelAndView modelAndView =
-		// 	this.setErrorMessageFromQueryString(
-		// 		new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
-		// 		queryParameters);
-		ModelAndView modelAndView = new ModelAndView();
-//	ViewNames.MAIN_MENU.getViewName();
+		ModelAndView modelAndView =
+			this.setErrorMessageFromQueryString(
+				new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
+				queryParameters);
+	//	ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName());
+
 	// TODO: Examine the ActiveUser classification if you want this information
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
