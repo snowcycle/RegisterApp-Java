@@ -14,7 +14,7 @@ import edu.uark.registerapp.nodels.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 
 @Service
-public class ActiveUserDeleteCommand{
+public class ActiveUserDeleteCommand implements ResultCommandInterface<ActiveUserEntity>{
     @Override
     public ActiveUserEntity execute(){
         final Optional<ActiveUserEntity> activeUserEntity=
