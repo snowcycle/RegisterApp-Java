@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RegisterApplication {
 
 	public static void main(final String[] args) {
+		System.setProperty("server.port", "6500");
 		SpringApplication.run(RegisterApplication.class, args);
 	}
 
