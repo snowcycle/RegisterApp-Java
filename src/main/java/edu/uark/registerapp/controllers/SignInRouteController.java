@@ -19,10 +19,14 @@ import edu.uark.registerapp.controllers.enums.QueryParameterNames;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.EmployeeSignIn;
+import net.bytebuddy.dynamic.TypeResolutionStrategy.Active;
 
 @Controller
 @RequestMapping(value = "/")
 public class SignInRouteController extends BaseRouteController {
+	@Autowired
+	ActiveEmployeeExistsQuery activeEmployeeExistsQuery;
+
     @RequestMapping(method = RequestMethod.GET)
 	public ModelAndView showSignIn(
 		@RequestParam final Map<String, String> queryParameters) 
