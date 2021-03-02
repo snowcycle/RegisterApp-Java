@@ -11,7 +11,7 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 
 @Service
-public class ActiveUserDeleteCommand implements VoidCommandInterface {
+public class DeleteUserCommand implements VoidCommandInterface {
 	@Transactional
 	@Override
 	public void execute() {
@@ -27,7 +27,7 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 	public String getSessionKey() {
 		return this.sessionKey;
 	}
-	public ActiveUserDeleteCommand setSessionKey(final String sessionKey) {
+	public DeleteUserCommand setSessionKey(final String sessionKey) {
 		this.sessionKey = sessionKey;
 		return this;
 	}
