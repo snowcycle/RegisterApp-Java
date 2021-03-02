@@ -15,3 +15,9 @@
     width: 25%; 
     display: block; 
 }
+
+.button:hover {
+    color: white;
+	background-color: black;
+    box-shadow: 2px 2px 5px gray;
+}
