@@ -20,7 +20,7 @@ public class SignInRestController extends BaseRestController {
 		final HttpServletRequest request
 	) {
 
-		this.activeUserDeleteCommand
+		this.deleteUserCommand
 			.setSessionKey(request.getSession().getId())
 			.execute();
 
@@ -28,5 +28,5 @@ public class SignInRestController extends BaseRestController {
 			.setRedirectUrl(ViewNames.SIGN_IN.getRoute());
 	}
 	@Autowired
-	private ActiveUserDeleteCommand activeUserDeleteCommand;
+	private DeleteUserCommand deleteUserCommand;
 }
