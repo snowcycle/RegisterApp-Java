@@ -36,7 +36,6 @@ public class ActiveUserDeleteCommand implements ResultCommandInterface<ActiveUse
     @Transactional
     public void ActiveUserDeleteCommand(){
         activeUserRepository.delete();
-
     }
 
     @Autowired
