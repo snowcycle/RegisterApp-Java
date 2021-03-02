@@ -18,6 +18,11 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 @Controller
 @RequestMapping(value = "/mainMenu")
 public class MainMenuRouteController extends BaseRouteController {
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ModelAndView test() {
+		return new ModelAndView(ViewNames.MAIN_MENU.getViewName());
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
 		@RequestParam final Map<String, String> queryParameters,
