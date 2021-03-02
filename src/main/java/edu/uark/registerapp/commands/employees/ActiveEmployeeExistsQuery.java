@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ActiveEmployeeExistsQuery implements EmployeeRepository{
     @Override
-    public void checkIfActive(){
+    public void ActiveEmployeeExistsQuery(){
         if(!this.employeeRepository.existsByIsActive(true)){
             throw new NotFoundException("Employee");
         }
