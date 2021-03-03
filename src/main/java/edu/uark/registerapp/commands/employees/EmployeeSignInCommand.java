@@ -67,7 +67,7 @@ public class EmployeeSignInCommand implements ResultCommandInterface<Employee>{
 		Optional<ActiveUserEntity> activeUserEntity = 
 			this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
 
-			//create a new active user in the record in the database if there isn't one already
+		//create a new active user in the record in the database if there isn't one that matches
 		if(!activeUserEntity.isPresent()) {
 			this.activeUserRepository.save(
 				(new ActiveUserEntity())
