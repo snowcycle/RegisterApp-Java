@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.pringframework.beans.factory.annotation.Transactional;
+import org.pringframework.transaction.annotation.Transactional;
 
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
