@@ -19,10 +19,18 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.activeUserRepository.findBySessionKey(this.sessionKey);
 
-			//removes active user
+		validateEmployeeRequestObject(activeUserEntity);
+
+		//removes active user
 		if (activeUserEntity.isPresent()) {
 			this.activeUserRepository.delete(activeUserEntity.get());
 		}
+	}
+
+	private void validateEmployeeRequestObject(Optional<ActiveUserEntity> activeUserEntity){
+		String [] name = activeUserEntity.get().getName().split(" ", 2);
+		if (name[0].isBlank()) {throw new UnprocessableEntityException("First Name");}
+		if (name[1].isBlank()) {throw new UnprocessableEntityException("Last Name");}
 	}
 
 	// Properties
