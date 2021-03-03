@@ -1,29 +1,24 @@
 package edu.uark.registerapp.commands.employees;
 
-// import java.util.Optional;
-// import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import edu.uark.registerapp.models.entities.EmployeeEntity;
-// import edu.uark.registerapp.models.repositories.EmployeeRepository;
+import edu.uark.registerapp.models.repositories.EmployeeRepository;
+import edu.uark.registerapp.commands.exceptions.NotFoundException;
 
+@Service
 public class ActiveEmployeeExistsQuery {
+	public void execute()
+	{
+		final Boolean activeEmployeeExists =
+			this.employeeRepository.existsByIsActive(true);
+		
+		if (!activeEmployeeExists)
+		{
+			throw new NotFoundException("Employee");
+		}
+	}
 
-	
-	// public boolean existsByisActive(boolean isActive) {
-
-	// 	return true;	// TEMP
-	// }
-
-	// public boolean existsByEmployeeId(int employeeId) {
-
-	// 	return true;	// TEMP
-	// }
-
-	// public Optional<EmployeeEntity> findById(UUID id) {
-
-	// }
-
-	// public Optional<EmployeeEntity> findByEmployeeId(int employeeId) {
-
-	// }
+	@Autowired
+	private EmployeeRepository employeeRepository;
 }

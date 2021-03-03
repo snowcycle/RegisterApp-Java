@@ -12,19 +12,19 @@ import edu.uark.registerapp.controllers.enums.ViewNames;
 
 @Controller
 @RequestMapping(value = "/")
-public class SignInRouteController extends BaseRouteController {
+public class SignInRouteController extends BaseRouteController
+{
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showSignIn() {
-		ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
-
-		return modelAndView;
+	public ModelAndView showSignIn()
+	{
+		return new ModelAndView(ViewNames.SIGN_IN.getViewName());
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView performSignIn(
 		// TODO: Define an object that will represent the sign in request and add it as a parameter here
-		HttpServletRequest request
-	) {
+		HttpServletRequest request)
+	{
 
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
