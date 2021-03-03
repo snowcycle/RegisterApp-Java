@@ -5,4 +5,5 @@ HELP.md
 mvnw
 mvnw.cmd
 target/
-
+# Ingore intelliJ generated module settings files
+*.iml
