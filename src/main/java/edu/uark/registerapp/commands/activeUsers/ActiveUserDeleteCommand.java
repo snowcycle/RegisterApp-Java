@@ -33,6 +33,7 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface{
     
     public ActiveUserDeleteCommand setSessionKey(final String sessionKey){
         this.sessionKey = sessionKey;
+        return this;
     }
 
     @Autowired
