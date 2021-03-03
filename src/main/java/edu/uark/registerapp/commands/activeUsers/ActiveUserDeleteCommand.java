@@ -16,15 +16,14 @@ import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 @Service
 public class ActiveUserDeleteCommand implements ResultCommandInterface<ActiveUserEntity>{
     @Override
-    public ActiveUserEntity execute(){
+    @Transactional
+    public void execute(){
         final Optional<ActiveUserEntity> activeUserEntity=
             this.activeUserRepository.findBySessionKey(this.sessionKey);
 
         if(!activeUserEntity.isPresent()){
-            throw new UauthorizedException();
+            this.activeUserRepository.delete(activeUserEntity.get());
         }
-
-        return activeUserEntity.get();
     }
 
     private String sessionKey;
@@ -33,9 +32,8 @@ public class ActiveUserDeleteCommand implements ResultCommandInterface<ActiveUse
         return this.sessionKey;
     }
     
-    @Transactional
-    public void ActiveUserDeleteCommand(){
-        activeUserRepository.delete();
+    public ActiveUserDeleteCommand setSessionKey(final String sessionKey){
+        this.sessionKey = sessionKey;
     }
 
     @Autowired
