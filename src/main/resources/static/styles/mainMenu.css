@@ -1,0 +1,23 @@
+.navButtons {
+    margin-top: 20px;
+}
+
+.button {
+    background-color: white; 
+    border: 4px solid black; 
+    color: black; 
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 24px 24px; 
+    margin: 10 auto;
+    cursor: pointer;
+    width: 25%; 
+    display: block; 
+}
+
+.button:hover {
+    color: white;
+	background-color: black;
+    box-shadow: 2px 2px 5px gray;
+}
