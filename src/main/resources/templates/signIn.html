@@ -20,10 +20,10 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-
-		<form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
+		<!-- SIGN IN FORM -->
+		<form name="signIn" action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
 			<label for="employeeID">Employee ID:</label>
-			<input type="text" id="employeeID" name="employeeID">
+			<input type="number" id="employeeId" name="employeeId" max="99999">
 			<br><br>
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password">
