@@ -3,6 +3,12 @@ package edu.uark.registerapp.models.api;
 import org.apache.commons.lang3.StringUtils;
 
 public class EmployeeSignIn {
+	
+	public EmployeeSignIn() {
+		this.password = StringUtils.EMPTY;
+		this.employeeId = StringUtils.EMPTY;
+	}
+
 	private String employeeId;
 	public String getEmployeeId() {
 		return this.employeeId;
@@ -21,8 +27,4 @@ public class EmployeeSignIn {
 		return this;
 	}
 	
-	public EmployeeSignIn() {
-		this.password = StringUtils.EMPTY;
-		this.employeeId = StringUtils.EMPTY;
-	}
 }
