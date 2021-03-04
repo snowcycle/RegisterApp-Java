@@ -144,8 +144,6 @@ public class Employee extends ApiResponse {
 		this.setCreatedOn(employeeEntity.getCreatedOn());
 	}
 }
-=======
-
     // Getters and setters
     public UUID getId() {
         return this.id;
