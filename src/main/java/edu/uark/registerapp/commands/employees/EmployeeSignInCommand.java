@@ -27,7 +27,7 @@ public class EmployeeSignInCommand {
 	}
 
 	@Transactional
-	boolean execute()
+	public boolean execute()
 	{
 		if (!validateSignIn())	// Credentials are invalid
 			return false;
