@@ -22,25 +22,28 @@
 		</div>
 
 		<!-- TODO: Add the various action button elements -->
-        <div>
-            <button id="startTransactionButton" type="button" class="action" onclick="getStartTransactionActionElement()">Start Transaction</button>
-        </div>
+		<div class="mainMenuActionsWrapper">
+			<div>
+				<button id="startTransactionButton" type="button" class="action" onclick="getStartTransactionActionElement()">Start Transaction</button>
+			</div>
 
-        <div>
-            <button id="viewProductsButton" type="button" class="action" onclick="getViewProductsActionElement()">View Products</button>
-        </div>
+			<div>
+				<button id="viewProductsButton" type="button" class="action" onclick="getViewProductsActionElement()">View Products</button>
+			</div>
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
+				<div>
+					<button id="createEmployeeButton" type="button" class="action" onclick="getCreateEmployeeActionElement()">Create Employee</button>
+				</div>
 
-        <div>
-            <button id="createEmployeeButton" type="button" class="action" onclick="getCreateEmployeeActionElement()">Create Employee</button>
-        </div>
+				<div>
+					<button id="productSalesReportButton" type="button" class="action" onclick="getProductSalesReportActionElement()">Sales Report</button>
+				</div>
 
-        <div>
-            <button id="productSalesReportButton" type="button" class="action" onclick="getProductSalesReportActionElement()">Sales Report</button>
-        </div>
-
-        <div>
-            <button id="cashierSalesReportButton" type="button" class="action" onclick="getCashierSalesReportActionElement()">Cashier Report</button>
-        </div>
+				<div>
+					<button id="cashierSalesReportButton" type="button" class="action" onclick="getCashierSalesReportActionElement()">Cashier Report</button>
+				</div>
+			</div>
+		</div>
             
 	</div>
 
