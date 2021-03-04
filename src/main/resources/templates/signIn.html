@@ -20,7 +20,6 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-		<!-- SIGN IN FORM -->
 		<form name="signIn" action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
 			<label for="employeeID">Employee ID:</label>
 			<input type="number" id="employeeId" name="employeeId" max="99999">
