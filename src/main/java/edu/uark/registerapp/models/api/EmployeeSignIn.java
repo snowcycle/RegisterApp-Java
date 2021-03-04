@@ -8,4 +8,14 @@ public class EmployeeSignIn {
 		this.employeeId = employeeId;
 		this.password = password;
 	}
+
+	public String getId()
+	{
+		return this.employeeId;
+	}
+
+	public String getPassword()
+	{
+		return this.password;
+	}
 }
