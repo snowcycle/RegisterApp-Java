@@ -1,4 +1,4 @@
- Sprint 2 task 5 will be completed on this branch
+
 # Basic description
 Browser based register application that interacts with a PostgreSQL database. Implemented in Java with Spring Boot and JPA. Edited in Visual Studio Code.  
   
