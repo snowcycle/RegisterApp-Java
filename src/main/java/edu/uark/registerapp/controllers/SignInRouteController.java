@@ -55,7 +55,6 @@ public class SignInRouteController extends BaseRouteController {
 		EmployeeSignIn employeeSignIn,
 		HttpServletRequest request
 	) {
-
 		try {
 			this.employeeSignInCommand
 				.setSessionId(request.getSession().getId())

@@ -1,117 +1,112 @@
 package edu.uark.registerapp.commands.employees;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import edu.uark.registerapp.models.api.EmployeeSignIn;
-import edu.uark.registerapp.models.repositories.ActiveUserRepository;
-import edu.uark.registerapp.models.repositories.EmployeeRepository;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import edu.uark.registerapp.commands.ResultCommandInterface;
 import edu.uark.registerapp.commands.employees.helpers.EmployeeHelper;
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.api.Employee;
+import edu.uark.registerapp.models.api.EmployeeSignIn;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.entities.EmployeeEntity;
+import edu.uark.registerapp.models.repositories.ActiveUserRepository;
+import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 @Service
-public class EmployeeSignInCommand implements ResultCommandInterface<Employee>{
-
+public class EmployeeSignInCommand implements ResultCommandInterface<Employee> {
+	@Override
 	public Employee execute() {
 		this.validateProperties();
-		return new Employee(this.SignInActiveUser());
+		return new Employee(this.SignInEmployee());
 	}
 
+	// Helper methods
 	private void validateProperties() {
-		//ID should not be blank. Should be a number
+		//check if employeeID is blank
 		if (StringUtils.isBlank(this.employeeSignIn.getEmployeeId())) {
 			throw new UnprocessableEntityException("employee ID");
 		}
-
-		//ID should only be a number
+		//check if you can get only a number out of the ID
 		try {
 			Integer.parseInt(this.employeeSignIn.getEmployeeId());
-		} catch (NumberFormatException e) {
+		} catch (final NumberFormatException e) {
+			//throw an exception if the ID is not just numbers
 			throw new UnprocessableEntityException("employee ID");
 		}
-
-		if (StringUtils.isBlank(this.employeeSignIn.getPassword())){
+		if (StringUtils.isBlank(this.employeeSignIn.getPassword())) {
+			//throw exception if the password is blank
 			throw new UnprocessableEntityException("password");
 		}
 	}
 
-	private Optional<EmployeeEntity> queryEmployeeUsingID() {
-		int employeeID = Integer.parseInt(this.getEmployeeId());
-		String password = this.getPassword();
-		Optional<EmployeeEntity> employeeEntity = this.employeeRepository.findByEmployeeId(employeeID);
-		if (!employeeEntity.isPresent() || !Arrays.equals(employeeEntity.get().getPassword(), EmployeeHelper.hashPassword(password)))
-		{
+	@Transactional
+	private EmployeeEntity SignInEmployee() {
+		//tries to find existing employee using the id
+		final Optional<EmployeeEntity> employeeEntity =
+			this.employeeRepository.findByEmployeeId(
+				Integer.parseInt(this.employeeSignIn.getEmployeeId()));
+		//verifies ifthe employee exists
+		if (!employeeEntity.isPresent()
+			|| !Arrays.equals(
+				employeeEntity.get().getPassword(),
+				EmployeeHelper.hashPassword(this.employeeSignIn.getPassword()))
+		) {
+
 			throw new UnauthorizedException();
 		}
 
-		return employeeEntity;
-	}
+		final Optional<ActiveUserEntity> activeUserEntity =
+			this.activeUserRepository
+				.findByEmployeeId(employeeEntity.get().getId());
 
-	@Transactional
-	private EmployeeEntity SignInActiveUser(){
-		Optional<EmployeeEntity> employeeEntity = queryEmployeeUsingID();
-
-		//query the activeuser table for a record with the employee ID
-		Optional<ActiveUserEntity> activeUserEntity = 
-			this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
-
-		//create a new active user in the record in the database if there isn't one that matches
-		if(!activeUserEntity.isPresent()) {
+		if (!activeUserEntity.isPresent()) {
 			this.activeUserRepository.save(
-				(new ActiveUserEntity())
-					.setSessionKey(this.getSessionId())
-					.setEmployeeId(employeeEntity.get().getId())
-					.setClassification(employeeEntity.get().getClassification())
-					.setName(employeeEntity.get().getFirstName().concat(" ").concat(employeeEntity.get().getLastName()))
-				);
-		}
-		else {
+					(new ActiveUserEntity())
+						.setSessionKey(this.sessionId)
+						.setEmployeeId(employeeEntity.get().getId())
+						.setClassification(
+							employeeEntity.get().getClassification())
+						.setName(
+							employeeEntity.get().getFirstName()
+								.concat(" ")
+								.concat(employeeEntity.get().getLastName())));
+		} else {
 			this.activeUserRepository.save(
-				activeUserEntity.get().setSessionKey(this.getSessionId())
-			);
+				activeUserEntity.get().setSessionKey(this.sessionId));
 		}
+
 		return employeeEntity.get();
 	}
 
-
-	//properties
-	@Autowired
-	private EmployeeRepository employeeRepository;
-	@Autowired
-	private ActiveUserRepository activeUserRepository;
-
+	// Properties
 	private EmployeeSignIn employeeSignIn;
-	public String getEmployeeId(){
-		return this.employeeSignIn.getEmployeeId();
+	public EmployeeSignIn getEmployeeSignIn() {
+		return this.employeeSignIn;
+	}
+	public EmployeeSignInCommand setEmployeeSignIn(final EmployeeSignIn employeeSignIn) {
+		this.employeeSignIn = employeeSignIn;
+		return this;
 	}
 
-	public String getPassword(){
-		return this.employeeSignIn.getPassword();
-	}
-	private String sessionId; //session key
+	private String sessionId;
 	public String getSessionId() {
 		return this.sessionId;
 	}
-
 	public EmployeeSignInCommand setSessionId(final String sessionId) {
 		this.sessionId = sessionId;
 		return this;
 	}
 
-	public EmployeeSignInCommand setEmployeeSignIn(final EmployeeSignIn employeeSignIn) {
-		this.employeeSignIn = employeeSignIn;
-		return this;
-	}
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	@Autowired
+	private ActiveUserRepository activeUserRepository;
 }
