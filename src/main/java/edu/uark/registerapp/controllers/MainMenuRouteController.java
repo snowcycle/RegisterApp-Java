@@ -3,6 +3,7 @@ package edu.uark.registerapp.controllers;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 
 @Controller
@@ -24,7 +26,20 @@ public class MainMenuRouteController {
 		final HttpServletRequest httpServletRequest
 	) {
 		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName(), queryParameters);
-		// modelAndView.addObject(ERROR_MESSAGE, attributeValue)
+		final Optional<ActiveUserEntity> ActiveUserEntity =
+			this.getCurrentUser(httpServletRequest);	
 		return modelAndView;
+	}
+
+	protected Optional<ActiveUserEntity> getCurrentUser(final HttpServletRequest request) 
+	{
+		try {
+			return Optional.of(
+				this.validateActiveUserCommand
+					.setSessionKey(request.getSession().getId())
+					.execute());
+		} catch (final UnauthorizedException e) {
+			return Optional.ofNullable(null);
+		}
 	}
 }
