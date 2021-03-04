@@ -25,8 +25,14 @@
 			<div>
 				<a href="/productDetail/" class="button">Create New</a>
 			</div>
-
+			
 			<br /><br />
+			<div>
+				<a href="/mainMenu/" class="button">Main Menu </a>
+			</div>
+			<br /><br />
+			
+		
 
 			<ul id="productsListing" class="products">
 				<li th:each="product : ${products}">
@@ -53,6 +59,10 @@
 				}
 			</script>
 		</div>
+	</div>
+	
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 		
 </body>
