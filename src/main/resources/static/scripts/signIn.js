@@ -1,3 +1,6 @@
+
+
+=======
 //William Farris, Task 3
 document.addEventListener("DOMContentLoaded", function(event) {
 	const employeeIdEditElement = getEmployeeIdEditElement();
@@ -40,4 +43,5 @@ function getPasswordEditElement() {
 
 function getEmployeeIdEditElement() {
 	return document.getElementById("employeeId");
+
 }
