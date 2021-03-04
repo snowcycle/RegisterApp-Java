@@ -20,26 +20,30 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 public class MainMenuRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
+		// GET Request	
 		@RequestParam final Map<String, String> queryParameters,
 		final HttpServletRequest request
 	) {
 
+		// see if there is a user signed in
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
+		// return to sign in page
 		if (!activeUserEntity.isPresent()) {
 			return this.buildInvalidSessionResponse();
 		}
-
+		
+		// add in error messages recieved
 		ModelAndView modelAndView =
 			this.setErrorMessageFromQueryString(
 				new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
 				queryParameters);
 
-		// TODO: Examine the ActiveUser classification if you want this information
+		// check for elevated user
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
-			true);
-
+			this.isElevatedUser(activeUserEntity.get()));
+		
 		return modelAndView;
 	}
 }
