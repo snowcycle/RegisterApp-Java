@@ -14,20 +14,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.uark.registerapp.commands.activeUsers.ValidateActiveUserCommand;
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
+import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
+import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
-@Controller
+@Controller  
 @RequestMapping(value="/mainMenu")
-public class MainMenuRouteController {
+public class MainMenuRouteController extends BaseRouteController{
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(
 		@RequestParam Map<String, String> queryParameters,
 		final HttpServletRequest httpServletRequest
 	) {
-		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName(), queryParameters);
-		final Optional<ActiveUserEntity> ActiveUserEntity =
-			this.getCurrentUser(httpServletRequest);	
+		final Optional<ActiveUserEntity> activeUserEntity =
+			this.getCurrentUser(httpServletRequest);
+		
+		if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
+		}
+		
+		ModelAndView modelAndView =
+		this.setErrorMessageFromQueryString(
+			new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
+			queryParameters);
+	
+		modelAndView.addObject(ViewModelNames.IS_ELEVATED_USER.getValue(),
+			this.isElevatedUser(activeUserEntity.get()));
+		
 		return modelAndView;
 	}
 
@@ -42,4 +57,7 @@ public class MainMenuRouteController {
 			return Optional.ofNullable(null);
 		}
 	}
+
+	@Autowired
+	private ValidateActiveUserCommand validateActiveUserCommand;
 }
