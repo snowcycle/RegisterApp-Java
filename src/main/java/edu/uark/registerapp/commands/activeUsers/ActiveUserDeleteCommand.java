@@ -28,9 +28,12 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 	}
 
 	private void validateEmployeeRequestObject(Optional<ActiveUserEntity> activeUserEntity){
+		if (StringUtils.isBlank(activeUserEntity.get().name())) {
+			throw new UnprocessableEntityException("Name");
+		}
 		String [] name = activeUserEntity.get().getName().split(" ", 2);
-		if (name[0].isBlank()) {throw new UnprocessableEntityException("First Name");}
-		if (name[1].isBlank()) {throw new UnprocessableEntityException("Last Name");}
+		if (StringUtils.isBlank(name[0])) {throw new UnprocessableEntityException("First Name");}
+		if (StringUtils.isBlank(name[1])) {throw new UnprocessableEntityException("Last Name");}
 	}
 
 	// Properties
