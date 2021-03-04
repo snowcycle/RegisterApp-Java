@@ -22,70 +22,70 @@ public class ActiveUserEntity {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private final UUID id;
 
-    public UUID getId() {
-        return this.id;
-    }
+	public UUID getId() {
+		return this.id;
+	}
 
-    @Column(name = "employeeid")
-    private UUID employeeId;
+	@Column(name = "employeeid")
+	private UUID employeeId;
 
-    public UUID getEmployeeId() {
-        return this.employeeId;
-    }
+	public UUID getEmployeeId() {
+		return this.employeeId;
+	}
 
-    public ActiveUserEntity setEmployeeId(final UUID employeeId) {
-        this.employeeId = employeeId;
-        return this;
-    }
+	public ActiveUserEntity setEmployeeId(final UUID employeeId) {
+		this.employeeId = employeeId;
+		return this;
+	}
 
-    @Column(name = "name")
-    private String name;
+	@Column(name = "name")
+	private String name;
 
-    public String getName() {
-        return this.name;
-    }
+	public String getName() {
+		return this.name;
+	}
 
-    public ActiveUserEntity setName(final String name) {
-        this.name = name;
-        return this;
-    }
+	public ActiveUserEntity setName(final String name) {
+		this.name = name;
+		return this;
+	}
 
-    @Column(name = "classification")
-    private int classification;
+	@Column(name = "classification")
+	private int classification;
 
-    public int getClassification() {
-        return this.classification;
-    }
+	public int getClassification() {
+		return this.classification;
+	}
 
-    public ActiveUserEntity setClassification(final int classification) {
-        this.classification = classification;
-        return this;
-    }
+	public ActiveUserEntity setClassification(final int classification) {
+		this.classification = classification;
+		return this;
+	}
 
-    @Column(name = "sessionkey")
-    private String sessionKey;
+	@Column(name = "sessionkey")
+	private String sessionKey;
 
-    public String getSessionKey() {
-        return this.sessionKey;
-    }
+	public String getSessionKey() {
+		return this.sessionKey;
+	}
 
-    public ActiveUserEntity setSessionKey(final String sessionKey) {
-        this.sessionKey = sessionKey;
-        return this;
+	public ActiveUserEntity setSessionKey(final String sessionKey) {
+    	this.sessionKey = sessionKey;
+    	return this;
     }
 
     @Column(name="createdon", insertable=false, updatable = false)
     @Generated(GenerationTime.INSERT)
-    private LocalDateTime createdOn;
-    public LocalDateTime getCreatedOn() {
-        return this.createdOn;
-    }
+	private LocalDateTime createdOn;
+	public LocalDateTime getCreatedOn() {
+		return this.createdOn;
+	}
 
     public ActiveUserEntity() {
-        this.id = new UUID(0, 0);
-        this.classification = -1;
-        this.name = StringUtils.EMPTY;
-        this.employeeId = new UUID(0, 0);
-        this.sessionKey = StringUtils.EMPTY;
+		this.id = new UUID(0, 0);
+		this.classification = -1;
+		this.name = StringUtils.EMPTY;
+		this.employeeId = new UUID(0, 0);
+		this.sessionKey = StringUtils.EMPTY;
     }
 }
