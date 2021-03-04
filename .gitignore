@@ -6,3 +6,8 @@ mvnw
 mvnw.cmd
 target/
 
+/src/main/resources/application-test.properties
+/.idea/
+/registerapp.iml
+/Sprint2--Overview-Sketch.pdf
+/sprint-2-tasks.pdf
