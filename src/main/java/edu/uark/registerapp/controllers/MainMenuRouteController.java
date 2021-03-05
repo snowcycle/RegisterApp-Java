@@ -55,6 +55,11 @@ public class MainMenuRouteController extends BaseRouteController{
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.POST)
+	public void signOut() {
+		
+	}
+
 	@Autowired
 	private ValidateActiveUserCommand validateActiveUserCommand;
 }

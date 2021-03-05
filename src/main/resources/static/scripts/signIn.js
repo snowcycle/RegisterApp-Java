@@ -8,11 +8,9 @@ function validateForm(){
 
     const id = document.getElementById('employeeId')      //sets the variable to the employeeId
     const pwd = document.getElementById('password')       //sets the variable to the password
-    console.log(id.value);
 
     if(id != null && pwd != null )  //makes sure that the employeeId and password are not blank 
     {
-        console.log("!isNaN(Number(id.value)" + (!isNaN(Number(id.value))));
         if(!isNaN(Number(id.value)))    //checks to see if the emplyeeId is a number
         {
             console.log("id.value" + Number(id.value));
