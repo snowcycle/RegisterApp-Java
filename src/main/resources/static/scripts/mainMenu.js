@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   getCreateEmployeeActionElement().addEventListener("click", () => { window.location.assign("/employeeDetail"); });
   getProductSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
   getCashierSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
+  //Additional functionality
+  signOut().addEventListener("click", () => {window.location.assign("/signIn");});
 });
 
 // Getters and setters
@@ -30,5 +32,9 @@ function getProductSalesReportActionElement() {
 
 function getCashierSalesReportActionElement() {
 	return document.getElementById("cashierSalesReportButton");
+}
+
+function signOut() {
+  return document.getElementById("signOutImage");
 }
 // End getters and setters
