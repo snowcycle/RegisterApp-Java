@@ -27,7 +27,7 @@ function validateForm(){
                 }
             } 
             else{
-                alert("Please fill out a valid EmployeeId1.");   //alerts the user if the EmployeeId they've typed in doesn't meet the requirements.
+                alert("Please fill out a valid EmployeeId.");   //alerts the user if the EmployeeId they've typed in doesn't meet the requirements.
                 return false;
             }
         }else{
