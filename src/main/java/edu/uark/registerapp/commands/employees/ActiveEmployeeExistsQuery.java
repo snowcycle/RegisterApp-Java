@@ -11,7 +11,7 @@ import edu.uark.registerapp.models.repositories.EmployeeRepository;
 public class ActiveEmployeeExistsQuery implements VoidCommandInterface {
 	@Override
 	public void execute() {
-		if (!this.employeeRepository.Active(true)) {
+		if (!this.employeeRepository.existsByIsActive(true)) {
 			throw new NotFoundException("Employee");
 		}
 	}
