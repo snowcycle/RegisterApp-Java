@@ -20,5 +20,49 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 @Service
-public class EmployeeSignInCommand{
+public class EmployeeSignInCommand implements ResultCommandInterface<Employee>{
+    @Override
+    public Employee execute(){
+        this.validateProperties();
+        return new Employee(this.SignInEmployee());
+    }
+
+    private void validateProperties(){
+        if(StringUtils.isBlank(this.employeeSignIn.getEmployeeId()){
+            throw new UnprocessableEntityException("Employee ID");
+        }
+        try{
+            Integer.parseInt(this.employeeSignIn.getEmployeeId());
+        } catch(final NumberFormatException e){
+            throw new UnprocessableEntityException("Employee ID");
+        } if(StringUtils.isBlank(this.employeeSignin.getPassword()){
+            throw new UnprocessableEntityException("Password");
+        }
+    }
+
+    @Transactional
+    private EmployeeEntity SignInEmployee(){
+        final Optional<EmployeeEntity> employeeEntity =
+            this.employeeRepository.findByEmployeeId(
+                    Integer.parseInt(this.employeeSignIn.getEmployeeId()));
+
+        if(!employeeEntity.isPresent() || !Arrays.equals(employeeEntity.get().getPassword(),
+                    EmployeeHelper.hashPassword(this.employeeSignIn.getPassword())){
+            throw new UnauthorizedException();
+        }
+
+        final Optional<ActiveUserEntity> activeUserEntity =
+            this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
+
+        if(!activeUserRepository.isPresent()){
+            this.activeUserRepository.save((new ActiveUserEntity()).setSessionKey(this.sessionId)
+                    .setEmployeeId(employeeEntity.get().getId()).setClassification(
+                        employeeEntity.get().getClassification())
+                    .setName(employeeEntity.get().getFirstName().concat(" ").
+                        .concat(employeeEntity.get().getLastName())));
+        } else{
+            this.activeUserRepository.save(activeUserEntity.get().setSessionKey(this.sessionId));
+        }
+        
+        return employeeEntity.get();
 }
