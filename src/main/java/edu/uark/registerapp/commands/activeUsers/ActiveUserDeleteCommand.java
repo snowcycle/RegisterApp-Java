@@ -50,11 +50,12 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 			if (employeeRepository != null)
 			{
 				Optional<EmployeeEntity> employee =
-					employeeRepository.findById(activeUserEntity.get().getId());
+					employeeRepository.findById(activeUserEntity.get().getEmployeeId());
 
 				if (employee.isPresent())	// Found corresponding entry in 'employee' table
 				{
 					employee.get().setIsActive(false);
+					employeeRepository.save(employee.get());
 				}
 			}
 
