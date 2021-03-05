@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   getStartTransactionActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented. Functionality"); });
   //getViewProductsActionElement().addEventListener("click", () => { window.location.assign("/src/main/resources/templates/productDetail.html"); });
 
-  getCreateEmployeeActionElement().addEventListener("click", () => { window.location.assign("/employeeDetail"); });
+  getCreateEmployeeActionElement().addEventListener("click", () => { window.location.assign("./employeeDetail.html"); });
   getProductSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
   getCashierSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
   //Additional functionality
