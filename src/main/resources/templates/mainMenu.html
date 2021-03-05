@@ -4,10 +4,12 @@
 	<title>Register - Main Menu</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
 
-	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/mainMenu.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="../static/styles/master.css">
+
+	<script type="text/javascript" src="../static/scripts/master.js" defer></script>
+	<script type="text/javascript" src="../static/scripts/mainMenu.js" defer></script>
+
 </head>
 
 <body>
@@ -22,6 +24,31 @@
 		</div>
 
 		<!-- TODO: Add the various action button elements -->
+
+		<div class="mainMenuActionsWrapper">
+			<div>
+				<button id="startTransactionButton" type="button" class="action" onclick="getStartTransactionActionElement()">Start Transaction</button>
+			</div>
+
+			<div>
+				<button id="viewProductsButton" type="button" class="action" onclick="getViewProductsActionElement()">View Products</button>
+			</div>
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
+				<div>
+					<button id="createEmployeeButton" type="button" class="action" onclick="getCreateEmployeeActionElement()">Create Employee</button>
+				</div>
+
+				<div>
+					<button id="productSalesReportButton" type="button" class="action" onclick="getProductSalesReportActionElement()">Sales Report</button>
+				</div>
+
+				<div>
+					<button id="cashierSalesReportButton" type="button" class="action" onclick="getCashierSalesReportActionElement()">Cashier Report</button>
+				</div>
+			</div>
+		</div>
+            
+
 	</div>
 
 	<div class="hidden">
@@ -41,7 +68,9 @@
 	</div>
 
 	<div class="footer">
-		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+
+		<img id="signOutImage" src="../static/images/Sign-Out.jpeg" alt="Sign Out" class="footer" />
+
 	</div>
 		
 </body>
