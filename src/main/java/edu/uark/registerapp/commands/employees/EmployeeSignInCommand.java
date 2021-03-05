@@ -76,7 +76,12 @@ public class EmployeeSignInCommand {
 			user.setEmployeeId(employee.get().getId());
 			user.setSessionKey(sessionKey);
 
+			// New active user entry - complete
 			activeUserRepository.save(user);
+
+			// Update 'active' column on employee table to true
+			employee.get().setIsActive(true);
+			employeeRepository.save(employee.get());
 		}
 
 		return true;

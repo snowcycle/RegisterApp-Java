@@ -12,6 +12,7 @@ import edu.uark.registerapp.commands.activeUsers.ActiveUserDeleteCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
+import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -21,8 +22,10 @@ public class SignInRestController extends BaseRestController {
 		final HttpServletRequest request
 	) {
 		ActiveUserDeleteCommand signOutCommand =
-			new ActiveUserDeleteCommand(request.getSession().getId(),
-			this.activeUserRepository);
+			new ActiveUserDeleteCommand(
+				request.getSession().getId(),
+				this.activeUserRepository,
+				this.employeeRepository);
 		
 		signOutCommand.execute();
         
@@ -33,4 +36,7 @@ public class SignInRestController extends BaseRestController {
 	// Properties
 	@Autowired
 	private ActiveUserRepository activeUserRepository;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 }

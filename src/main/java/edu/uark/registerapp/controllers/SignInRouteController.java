@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.employees.EmployeeSignInCommand;
+import edu.uark.registerapp.commands.exceptions.NotFoundException;
+import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 
 import edu.uark.registerapp.models.api.EmployeeSignIn;
@@ -63,9 +65,17 @@ public class SignInRouteController extends BaseRouteController
 		}
 		else
 		{
-			// TO DO: Add error message for failed sign in
-			
-			return new ModelAndView(ViewNames.SIGN_IN.getViewName());
+			ModelAndView modelAndView =
+				new ModelAndView(ViewNames.SIGN_IN.getViewName());
+
+			final Exception e =
+				new NotFoundException("An employee with matching ID or password");
+
+			modelAndView.addObject(
+				ViewModelNames.ERROR_MESSAGE.getValue(),
+				e.getMessage());
+
+			return modelAndView;
 		}
 	}
 

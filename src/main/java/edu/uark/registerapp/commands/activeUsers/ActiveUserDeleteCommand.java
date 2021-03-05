@@ -7,18 +7,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.uark.registerapp.commands.VoidCommandInterface;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
+import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 @Service
 public class ActiveUserDeleteCommand implements VoidCommandInterface {
 
 	private String sessionKey;
 	private ActiveUserRepository activeUserRepository;
+	private EmployeeRepository employeeRepository;
 
-	public ActiveUserDeleteCommand(String sessionKey, ActiveUserRepository activeUserRepository)
+	public ActiveUserDeleteCommand(
+		String sessionKey,
+		ActiveUserRepository activeUserRepository,
+		EmployeeRepository employeeRepository)
 	{
 		this.sessionKey = sessionKey;
 		this.activeUserRepository = activeUserRepository;
+		this.employeeRepository = employeeRepository;
 	}
 
 	public ActiveUserDeleteCommand()
@@ -38,7 +45,19 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.activeUserRepository.findBySessionKey(this.sessionKey);
 
-		if (activeUserEntity.isPresent()) {
+		if (activeUserEntity.isPresent())	// Found active user
+		{
+			if (employeeRepository != null)
+			{
+				Optional<EmployeeEntity> employee =
+					employeeRepository.findById(activeUserEntity.get().getId());
+
+				if (employee.isPresent())	// Found corresponding entry in 'employee' table
+				{
+					employee.get().setIsActive(false);
+				}
+			}
+
 			this.activeUserRepository.delete(activeUserEntity.get());
 		}
 	}
