@@ -1,7 +1,5 @@
 <html xmlns:th="https://www.thymeleaf.org">
 
-
-
     <title>Register - Main Menu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/styles/master.css">
@@ -11,14 +9,14 @@
 
 <body>
     <!-- Tell user which page they are on -->
-    <div>
-        <h1>Main Menu</h1>
+    <div class="header">
+        <h1 class="primary-message">Main Menu</h1>
     </div>
 
     <!-- Main part of the page -->
     <div id="main" class="main">
         <!-- Display error message if available -->
-        <div id="error" th:class="${strings.isEmpty(errorMessage)} ? hidden : ''">
+        <div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
             <h4 id="error_message" class="error-message" th:text="${errorMessage"></h4>
         </div>
 
@@ -26,25 +24,25 @@
         <div class="main_menu_actions_wrapper">
             <br>
             <!-- Start Transaction -->
-            <button id="start_transaction_button" type="button" class="action" title="Functionality Not Available">Start Transaction</button>
+            <button id="startTransactionButton" type="button" class="action" title="Functionality Not Available">Start Transaction</button>
             <br> <br>
 
             <!-- View Products -->
-            <button id="view_products_button" type="button" class="action">View Products</button>
+            <button id="viewProductsButton" type="button" class="action">View Products</button>
             <br> <br>
 
             <!-- Manager View Options -->
             <div th:class="not ${isElevatedUser} ? hidden : ''">
                 <!-- Create Employee (only show to managers) -->
-                <button id="create_employee_button" type="button" class="action">Create Employee</button>
+                <button id="createEmployeeButton" type="button" class="action">Create Employee</button>
                 <br> <br>
 
                 <!-- Sales Report (only show to managers) -->
-                <button id="sales_report_button" type="button" class="action" title="Functionality Not Available">Sales Report</button>
+                <button id="productSalesReportButton" type="button" class="action" title="Functionality Not Available">Sales Report</button>
                 <br> <br>
 
                 <!-- Cashier Report (only show to managers) -->
-                <button id="cashier_report_button" type="button" class="action" title="Functionality Not Available">Cashier Report</button>
+                <button id="cashierSalesReportButton" type="button" class="action" title="Functionality Not Available">Cashier Report</button>
                 <br> <br>
             </div>
         </div>
@@ -52,8 +50,7 @@
 
     <!-- Refresh Button -->
     <div class="hidden">
-        <input type="checkbox" id="isRefreshed" class="hidden" name="refresh" value="Refresh">
-        <label for="refresh">Refresh</label>
+        <input type="checkbox" id="isRefreshed" class="hidden">
         <br> <br>
         <script type ="text/javascript">
         window.onunload = function()
@@ -74,7 +71,7 @@
 
     <!-- Sign out (redirect to Sign in View) -->
     <div class="footer">
-        <img id="sign_out_image" src="/RegisterApp-Java/src/main/resources/static/images" alt="Sign Out" class="footer">
+        <img id="sign_out_image" src="src/main/resources/static/images/logout.svg" alt="Sign Out" class="footer">
     </div>
 
 </body>
