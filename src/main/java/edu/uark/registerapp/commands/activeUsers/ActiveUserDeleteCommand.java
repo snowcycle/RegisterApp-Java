@@ -78,5 +78,5 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 	}
 
 	@Autowired
-	private ActiveUserRepository activeUserRepository;
+	private ActiveUserRepository activeUserRepository;  
 }
