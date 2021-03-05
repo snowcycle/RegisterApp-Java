@@ -65,4 +65,35 @@ public class EmployeeSignInCommand implements ResultCommandInterface<Employee>{
         }
         
         return employeeEntity.get();
+    }
+
+    private EmployeeSignIn employeeSignIn;
+
+    public EmployeeSignIn getEmployeeSignIn(){
+        return this.employeeSignIn;
+    }
+
+    public EmployeeSignInCommand setEmployeeSignIn(final EmployeeSignIn employeeSignIn){
+        this.employeeSignIn = employeeSignIn;
+        
+        return this;
+    }
+
+    private String sessionId;
+
+    public String getSessionId(){
+        return this.sessionId;
+    }
+
+    public EmployeeSignInCommand setSessionId(final String sessionId){
+        this.sessionId = sessionId;
+
+        return this;
+    }
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private ActiveUserRepository activeUserRepository;
 }
