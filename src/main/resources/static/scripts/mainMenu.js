@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   getProductSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
   getCashierSalesReportActionElement().addEventListener("click", () => { displayError("Functionality has not yet been implemented."); });
   //Additional functionality
-  signOut().addEventListener("click", () => {window.location.assign("/signIn");});
+  signOut().addEventListener("click", () => {window.location.assign("./signIn.html");});
 });
 
 // Getters and setters
