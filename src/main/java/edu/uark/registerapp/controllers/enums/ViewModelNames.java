@@ -5,12 +5,15 @@ public enum ViewModelNames {
 	ERROR_MESSAGE("errorMessage"),
 	IS_ELEVATED_USER("isElevatedUser"),
 	PRODUCTS("products"), // Product listing
-	PRODUCT("product"); // Product detail
-	
+	PRODUCT("product"), // Product detail
+	EMPLOYEE_ID("employeeId"), // Sign in
+	EMPLOYEE("employee"), // Employee detail
+	EMPLOYEE_TYPES("employeeTypes");
+
 	public String getValue() {
 		return value;
 	}
-	
+
 	private String value;
 
 	private ViewModelNames(final String value) {
