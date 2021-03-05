@@ -20,18 +20,16 @@ public class SignInRestController extends BaseRestController {
 	public @ResponseBody ApiResponse removeActiveUser(
 		final HttpServletRequest request
 	) {
-
-		// TODO: Sign out the user associated with request.getSession().getId()
-
-		this.activeUserDeleteCommand
-		.setSessionKey(request.getSession().getId())
-		.execute();
+		// this.activeUserDeleteCommand
+		// .setSessionKey(request.getSession().getId())
+		// .execute();
 
         
 		return (new ApiResponse())
 			.setRedirectUrl(ViewNames.SIGN_IN.getRoute());
 	}
+
 	// Properties
-	@Autowired
-	private ActiveUserDeleteCommand activeUserDeleteCommand;
+	// @Autowired
+	// private ActiveUserDeleteCommand activeUserDeleteCommand;
 }

@@ -2,19 +2,20 @@ package edu.uark.registerapp.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import edu.uark.registerapp.commands.employees.EmployeeSignInCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 
 import edu.uark.registerapp.models.api.EmployeeSignIn;
+import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 
@@ -28,7 +29,8 @@ public class SignInRouteController extends BaseRouteController
 		// Check if any employees exist. If none, redirect to employeeDetail.
 		if (this.employeeRepository.count() == 0)
 		{
-			// TO DO: Redirect to employeeDetail
+			return new ModelAndView(
+				REDIRECT_PREPEND.concat(ViewNames.EMPLOYEE_DETAIL.getRoute()));
 		}
 
 		return new ModelAndView(ViewNames.SIGN_IN.getViewName());
@@ -39,23 +41,40 @@ public class SignInRouteController extends BaseRouteController
 		EmployeeSignIn signIn,
 		HttpServletRequest request)
 	{
+		signIn = new EmployeeSignIn(request.getParameter("employeeId"),
+			request.getParameter("password"));
 
-		// TODO: Use the credentials provided in the request body
-		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
-		//  to sign in the user
+		EmployeeSignInCommand signInCommand = new EmployeeSignInCommand(signIn,
+			request.getSession().getId());
 
+		// See comments on this set method in EmployeeSignInCommand.java
+		// TLDR: I don't like doing it this way but I don't know how to do better
+		signInCommand.setEmployeeRepository(this.employeeRepository);
+		signInCommand.setActiveUserRepository(this.activeUserRepository);
 
-		return new ModelAndView(
-			REDIRECT_PREPEND.concat(
-				ViewNames.MAIN_MENU.getRoute()));
-	}
+		/*
+		We don't need to validate the sign in information here because
+		EmployeeSignInCommand.execute() does this and returns false
+		if unsuccessful.
+		*/
 
-	@RequestMapping(value = "/employeeDetail", method = RequestMethod.GET)
-	public ModelAndView showEmployeeDetail()
-	{
-		return new ModelAndView(ViewNames.EMPLOYEE_DETAIL.getViewName());
+		if (signInCommand.execute())	// Sign in is successful...
+		{
+			return new ModelAndView(
+				REDIRECT_PREPEND.concat(ViewNames.MAIN_MENU.getRoute()));
+		}
+		else
+		{
+			// TO DO: Add error message for failed sign in
+			
+			return new ModelAndView(ViewNames.SIGN_IN.getViewName());
+		}
+		
 	}
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+
+	@Autowired
+	ActiveUserRepository activeUserRepository;
 }

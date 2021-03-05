@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("productsButton").addEventListener('click', navigate);
+    document.getElementById("productsButton").addEventListener('click', goToProductListing);
+	document.getElementById("employeeButton").addEventListener('click', goToEmployeeDetail);
     document.getElementById("transactionButton").addEventListener('click', displayError);
 	document.getElementById("salesButton").addEventListener('click', displayError);
 	document.getElementById("cashierButton").addEventListener('click', displayError);
@@ -7,11 +8,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 // Navigate to products listing page
-function navigate(event)
+function goToProductListing(event)
 {
     window.location.assign(
 		"/productListing/"
 		);
+}
+
+// Navigate to employee detail page
+function goToEmployeeDetail(event)
+{
+	window.location.assign("/employeeDetail/");
 }
 
 // Display error message

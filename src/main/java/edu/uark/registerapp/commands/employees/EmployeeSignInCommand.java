@@ -1,10 +1,12 @@
 package edu.uark.registerapp.commands.employees;
 
 import java.util.Optional;
-import java.util.Arrays; 
+import java.util.Arrays;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
@@ -20,10 +22,16 @@ public class EmployeeSignInCommand {
 	private EmployeeSignIn employeeSignIn;
 	private String sessionKey;
 
-	EmployeeSignInCommand(EmployeeSignIn employeeSignIn, String sessionKey)
+	public EmployeeSignInCommand(EmployeeSignIn employeeSignIn, String sessionKey)
 	{
 		this.employeeSignIn = employeeSignIn;
 		this.sessionKey = sessionKey;
+	}
+
+	EmployeeSignInCommand()
+	{
+		this.employeeSignIn = new EmployeeSignIn();
+		this.sessionKey = "";
 	}
 
 	@Transactional
@@ -40,8 +48,8 @@ public class EmployeeSignInCommand {
 			return false;
 
 		if (!Arrays.equals(			// Passwords do NOT match
-			employeeSignIn.getPassword().getBytes(),
-			employee.get().getPassword()))
+				employeeSignIn.getPassword().getBytes(),
+				employee.get().getPassword()))
 		{
 			return false;
 		}
@@ -65,6 +73,7 @@ public class EmployeeSignInCommand {
 			// Create full name then set active user name
 			String employeeName = employee.get().getFirstName();
 			employeeName.concat(" ").concat(employee.get().getLastName());
+
 			user.setName(employeeName);
 
 			user.setEmployeeId(employee.get().getId());
@@ -81,23 +90,43 @@ public class EmployeeSignInCommand {
 		String employeeId = employeeSignIn.getId();
 
 		if (StringUtils.isBlank(employeeId) || employeeId.length() > 5)
+		{
 			return false;
+		}
 
 		for (int i = 0; i < employeeId.length(); i++)
 		{
-			if(!(employeeId.charAt(i) >= 0 && employeeId.charAt(i) <= 9))
+			if(!(employeeId.charAt(i) >= '0' && employeeId.charAt(i) <= '9'))
+			{
 				return false;
+			}
 		}
 
-		if(employeeSignIn.getPassword().equals(""))
+		if(StringUtils.isBlank(employeeSignIn.getPassword()))
+		{
 			return false;
+		}
 		
 		return true; 
 	}
 
-	@Autowired
-	private EmployeeRepository employeeRepository;
+	/*
+	ONLY CALLED BY SignInRouteController
+	PROBABLY A BAD WAY TO DO THIS
+	I think @Autowired doesn't work because this class is not a controller...
+	...hence SignInRouteController setting this property
+	*/
+	public void setEmployeeRepository(EmployeeRepository employeeRepository)
+	{
+		this.employeeRepository = employeeRepository;
+	}
 
-	@Autowired
+	// THIS IS ALSO PROBABLY BAD FOR THE SAME REASON AS ABOVE
+	public void setActiveUserRepository(ActiveUserRepository activeUserRepository)
+	{
+		this.activeUserRepository = activeUserRepository;
+	}
+
+	private EmployeeRepository employeeRepository;
 	private ActiveUserRepository activeUserRepository;
 }

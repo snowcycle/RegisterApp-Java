@@ -3,7 +3,6 @@ package edu.uark.registerapp.commands.activeUsers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.uark.registerapp.commands.VoidCommandInterface;
@@ -12,11 +11,8 @@ import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 
 public class ActiveUserDeleteCommand implements VoidCommandInterface {
 	
-
-
-
-	@Transactional
 	@Override
+	@Transactional
 	public void execute() {
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.activeUserRepository.findBySessionKey(this.sessionKey);

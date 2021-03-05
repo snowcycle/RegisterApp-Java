@@ -5,9 +5,22 @@ public class EmployeeSignIn {
 	private String employeeId;
 	private String password;
 
-	EmployeeSignIn(String employeeId, String password) {
+	public EmployeeSignIn(String employeeId, String password)
+	{
 		this.employeeId = employeeId;
 		this.password = password;
+	}
+
+	public EmployeeSignIn(int employeeId, String password)
+	{
+		this.employeeId = Integer.toString(employeeId);
+		this.password = password;
+	}
+
+	public EmployeeSignIn()
+	{
+		this.employeeId = "";
+		this.password = "";
 	}
 
 	public String getId()
