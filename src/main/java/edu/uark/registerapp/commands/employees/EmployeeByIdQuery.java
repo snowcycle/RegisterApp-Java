@@ -21,12 +21,12 @@ public class EmployeeByIdQuery implements ResultCommandInterface<Employee>
 	{
 		
 		final Optional<EmployeeEntity> employeeEntity =
-			this.employeeRepository.findByEmployeeId(this.employeeId);   // This is throwing errors because the
-		Checking to see if the employee exist.							 // operations in EmployeeRepository.java are 
-		if (employeeEntity.isPresent()){								 // commented out. I had to do this so the app 
-			return new Employee(employeeEntity.get());					 //  will run as expected.
-		} else {														 // I think Once we get everything put together 
-			throw new NotFoundException("Employee");					 // with the routers we can uncomment those 												                 // functions.
+			this.employeeRepository.findByEmployeeId(this.employeeId);
+	
+		if (employeeEntity.isPresent()){
+			return new Employee(employeeEntity.get());
+		} else {
+			throw new NotFoundException("Employee");
 		}
 	}
 
