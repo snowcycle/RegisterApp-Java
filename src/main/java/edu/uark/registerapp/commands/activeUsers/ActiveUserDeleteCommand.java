@@ -2,18 +2,39 @@ package edu.uark.registerapp.commands.activeUsers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.uark.registerapp.commands.VoidCommandInterface;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 
+@Service
 public class ActiveUserDeleteCommand implements VoidCommandInterface {
-	
+
+	private String sessionKey;
+	private ActiveUserRepository activeUserRepository;
+
+	public ActiveUserDeleteCommand(String sessionKey, ActiveUserRepository activeUserRepository)
+	{
+		this.sessionKey = sessionKey;
+		this.activeUserRepository = activeUserRepository;
+	}
+
+	public ActiveUserDeleteCommand()
+	{
+		this.sessionKey = "";
+	}
+
 	@Override
 	@Transactional
-	public void execute() {
+	public void execute()
+	{
+		if (activeUserRepository == null)
+		{
+			return;
+		}
+
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.activeUserRepository.findBySessionKey(this.sessionKey);
 
@@ -22,27 +43,8 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface {
 		}
 	}
 
-
-	private String sessionKey;
-
-	ActiveUserDeleteCommand(String sessionKey)
-	{
-		this.sessionKey = sessionKey;
-	}
-
 	public String getSessionKey()
 	{
 		return this.sessionKey;
 	}
-
-	public ActiveUserDeleteCommand setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
-		return this;
-	}
-
-	// Properties
-	@Autowired
-	private ActiveUserRepository activeUserRepository;
-
-	
 }
