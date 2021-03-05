@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
+import edu.uark.registerapp.models.enums.EmployeeClassification;
 
 @Controller
 @RequestMapping(value = "/mainMenu")
@@ -27,7 +28,7 @@ public class MainMenuRouteController extends BaseRouteController {
 
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
-		if (!activeUserEntity.isPresent()) {
+		if (activeUserEntity.isEmpty()) {
 			return this.buildInvalidSessionResponse();
 		}
 		
@@ -36,10 +37,18 @@ public class MainMenuRouteController extends BaseRouteController {
 				new ModelAndView(ViewNames.MAIN_MENU.getViewName()),
 				queryParameters);
 
-		// TODO: Examine the ActiveUser classification if you want this information
-		modelAndView.addObject(
-			ViewModelNames.IS_ELEVATED_USER.getValue(),
-			true);
+		// Check if user is any kind of manager
+		if (EmployeeClassification.isElevatedUser(
+			activeUserEntity.get().getClassification()))
+		{
+			modelAndView.addObject(
+				ViewModelNames.IS_ELEVATED_USER.getValue(), true);
+		}
+		else
+		{
+			modelAndView.addObject(
+				ViewModelNames.IS_ELEVATED_USER.getValue(), false);
+		}
 		
 		return modelAndView;
 	}
