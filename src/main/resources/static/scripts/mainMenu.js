@@ -1,4 +1,6 @@
 // This is the functionality for the main menu.
+import{SignOutActionClickHandler} from './master.js';
+
 document.addEventListener("DOMContentLoaded", function(event) 
 {
 	startTransaction.addEventListener("click", transactionActionElement);
@@ -39,7 +41,7 @@ function cashierSalesReportActionElement() {
 }
 
 function signOutActionElement() {
-
+	SignOutActionClickHandler();
 	window.location.href = "\signIn.html"; // Go to the sign in page
 
 }
