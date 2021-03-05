@@ -7,14 +7,15 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
-// import edu.uark.registerapp.commands.employees.helpers.EmployeeHelper;
-// import edu.uark.registerapp.models.entities.EmployeeEntity;
+import edu.uark.registerapp.commands.employees.helpers.EmployeeHelper;
+import edu.uark.registerapp.models.entities.EmployeeEntity;
 
 public class Employee extends ApiResponse {
     private UUID id;
     public UUID getId() {
     	return this.id;
     }
+
     public Employee setId(final UUID id) {
 		this.id = id;
 		return this;
@@ -24,10 +25,12 @@ public class Employee extends ApiResponse {
 	public String getEmployeeId() {
 		return this.employeeId;
 	}
-	// public Employee setEmployeeId(final int employeeId) {
-	// 	this.employeeId = EmployeeHelper.padEmployeeId(employeeId);
-	// 	return this;
-	// }
+
+	//Part of task 3
+	public Employee setEmployeeId(final int employeeId) {
+	 	this.employeeId = EmployeeHelper.padEmployeeId(employeeId);
+	 	return this;
+	 }
 	public Employee setEmployeeId(final String employeeId) {
 		this.employeeId = employeeId;
 		return this;
@@ -138,8 +141,8 @@ public class Employee extends ApiResponse {
 		this.firstName = employeeEntity.getFirstName();
 		this.managerId = employeeEntity.getManagerId();
 		this.classification = employeeEntity.getClassification();
-		// this.employeeId =
-		// 	EmployeeHelper.padEmployeeId(employeeEntity.getEmployeeId());
+		this.employeeId =
+		 	EmployeeHelper.padEmployeeId(employeeEntity.getEmployeeId());
 
 		this.setCreatedOn(employeeEntity.getCreatedOn());
 	}
