@@ -23,13 +23,17 @@ public class MainMenuRouteController extends BaseRouteController{
 	//@RequestParam reads form data and binds it to the specified parameters; maps the request parameter to query parameter
 	//parameters for get request: Map<String, String> and HttpServletRequest
 	//Map object is a collection of keyed-in elements using any type of key
-	public ModelAndView start(@RequestParam final Map<String,String> queryParameters, final HttpServletRequest request) {
+	public ModelAndView start(
+		@RequestParam final Map<String,String> queryParameters, 
+		final HttpServletRequest request) {
 		//if there's an active user in the current session, add any error messages received in requestParam to the view
 		//serve up the main menu view/doc
 		//ELSE: immediately redirect to the Sign-In view document with an appropriate error message
-		final Optional<ActiveUserEntity> activeUserEntity = 
+		final Optional<ActiveUserEntity> 
+		activeUserEntity = 
 			this.getCurrentUser(request);
-		if (!activeUserEntity.isPresent()) {
+		if (!activeUserEntity.isPresent()
+		) {
 			return this.buildInvalidSessionResponse();
 		}
 		
@@ -41,6 +45,8 @@ public class MainMenuRouteController extends BaseRouteController{
 		modelAndView.addObject(
 			ViewModelNames.IS_ELEVATED_USER.getValue(),
 			this.isElevatedUser(activeUserEntity.get()));
+
+			return modelAndView;
 	}
 }
 
