@@ -20,11 +20,7 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-		<form name="createEmployee" action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
-			<label for="employeeID">Employee ID:</label>
-			<input type="number" id="employeeId" name="employeeId" max="99999">
-			<br><br>
-
+		<form name="createEmployee" action="/employeeDetail" method="POST" onsubmit="return validateForm();" class="inputContent">
 			<label for="firstname">First Name:</label>
 			<input type="text" id="firstname" name="firstname">
 			<br><br>
@@ -43,9 +39,10 @@
 			
 			<label for="classification">Employee Type:</label>
 			<select id="classification" name="classification">
-				<option value="cashier">Cashier</option>
-				<option value="manager">Manager</option>
-			  </select>
+				<option value="101">Cashier</option>
+				<option value="501">Shift Manager</option>
+				<option value="701">General Manager</option>
+			</select>
 
 			<input type="submit" value="Submit">
 		</form>
