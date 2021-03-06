@@ -1,0 +1,60 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Employee Detail</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="/styles/employeeDetail.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="primary-message">Employee Detail</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+		<form name="createEmployee" action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
+			<label for="employeeID">Employee ID:</label>
+			<input type="number" id="employeeId" name="employeeId" max="99999">
+			<br><br>
+
+			<label for="firstname">First Name:</label>
+			<input type="text" id="firstname" name="firstname">
+			<br><br>
+
+			<label for="lastname">Last Name:</label>
+			<input type="text" id="lastname" name="lastname">
+			<br><br>
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password">
+			<br><br>
+			
+			<label for="verifyPassword">Verify Password:</label>
+			<input type="password" id="verifyPassword" name="verifyPassword">
+			<br><br>
+			
+			<label for="classification">Employee Type:</label>
+			<select id="classification" name="classification">
+				<option value="cashier">Cashier</option>
+				<option value="manager">Manager</option>
+			  </select>
+
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+		
+</body>
+
+</html>

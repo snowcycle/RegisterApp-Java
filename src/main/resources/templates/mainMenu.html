@@ -1,0 +1,56 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Main Menu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="/styles/mainMenu.css">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/mainMenu.js" defer></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<h1 class="primary-message">Main Menu</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div id="navButtons" class ="navButtons">
+			<button id="transactionButton" type="button" class="button">Start Transaction</button>
+			<button id="productsButton" type="button" class="button">View Products</button>
+			<button id="employeeButton" type="button" class="button">Employee Details</button>
+			<button id="salesButton" type="button" class="button">Sales Report</button>
+			<button id="cashierButton" type="button" class="button">Cashier Report</button>
+		</div>
+	</div>
+
+	<div class="hidden">
+		<input type="checkbox" id="isRefreshed" class="hidden">
+		<script type="text/javascript">
+			window.onunload = function() {
+				const isRefreshedElement = document.getElementById("isRefreshed");
+
+				if(!isRefreshedElement.checked) {
+					isRefreshedElement.checked = true;
+				} else {
+					isRefreshedElement.checked = false;
+					location.reload();
+				}
+			}
+		</script>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+		
+</body>
+
+</html>
