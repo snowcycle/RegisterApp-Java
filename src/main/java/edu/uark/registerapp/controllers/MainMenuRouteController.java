@@ -28,7 +28,7 @@ public class MainMenuRouteController extends BaseRouteController {
 
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
-		if (activeUserEntity.isEmpty()) {
+		if (!activeUserEntity.isPresent()) {
 			return this.buildInvalidSessionResponse();
 		}
 		

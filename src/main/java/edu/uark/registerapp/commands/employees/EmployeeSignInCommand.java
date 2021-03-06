@@ -41,7 +41,7 @@ public class EmployeeSignInCommand {
 			employeeRepository.findByEmployeeId(
 				Integer.parseInt(employeeSignIn.getId()));
 		
-		if (employee.isEmpty())		// Employee does not exist
+		if (!employee.isPresent())		// Employee does not exist
 			return false;
 
 		if (!Arrays.equals(			// Passwords do NOT match
