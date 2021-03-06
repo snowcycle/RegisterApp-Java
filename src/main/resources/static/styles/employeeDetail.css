@@ -12,6 +12,7 @@ input, select {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 input[type=submit] {
@@ -30,6 +31,5 @@ input[type=submit] {
 input[type=submit]:hover {
     color: white;
 	background-color: black;
-
     box-shadow: 2px 2px 5px gray;
 }
