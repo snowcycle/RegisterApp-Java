@@ -6,6 +6,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	document.getElementById("cashierButton").addEventListener('click', displayError);
 });
 
+// Hide button from users that aren't managers
+if(EmployeeClassification.isElevatedUser())
+{
+	document.getElementById("employeeButton").style.visbility="hidden";
+	document.getElementById("salesButton").style.visbility="hidden";
+	document.getElementById("cashierButton").style.visbility="hidden";
+}
+
 
 // Navigate to products listing page
 function goToProductListing(event)
