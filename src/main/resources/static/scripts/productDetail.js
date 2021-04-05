@@ -174,3 +174,13 @@ function getProductCountElement() {
 	return document.getElementById("productCount");
 }
 // End getters and setters
+
+function enableInputs(){
+	document.getElementById("productLookupCode").disabled = false;
+	document.getElementById("productLookupCode").disabled = false;
+}
+
+function disableInputs(){
+	document.getElementById("productLookupCode").disabled = true;
+	document.getElementById("productLookupCode").disabled = true;
+}

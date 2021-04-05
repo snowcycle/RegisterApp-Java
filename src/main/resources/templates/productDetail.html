@@ -49,12 +49,13 @@
 
 		<div class="productActionsWrapper">
 			<br />
-			<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
+			<div id="deleteActionContainer" th:class="${isElevatedUser} ? hidden : ''">
 				<button id="deleteButton" type="button" class="action">Delete</button>
 				<br />
 				<br />
+				<button id="saveButton" type="button" class="action">Save</button>
 			</div>
-			<button id="saveButton" type="button" class="action">Save</button>
+			
 		</div>
 
 		<div id="productSavedAlertModal" class="modal animate-opacity-show">
