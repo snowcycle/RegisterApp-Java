@@ -35,10 +35,10 @@
 						<td class="label">Lookup Code:</td>
 						<td>
 							<div id="deleteActionContainer" th:class="${isElevatedUser} ? hidden : ''">
-								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" disabled><br><br>
+								<input id="productLookupCodeDisabled" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" disabled>
 							</div>
-							<div id="deleteActionContainer" th:class="not ${isElevatedUser}? hidden : ''">
-								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+							<div id="lookupCode" th:class="not ${isElevatedUser}? hidden : ''">
+								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode}" class="update" />
 							</div>
 						</td>
 					</tr>
@@ -46,7 +46,7 @@
 						<td class="label">Count:</td>
 						<td>
 							<div id="deleteActionContainer" th:class="${isElevatedUser} ? hidden : ''">
-								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" disabled><br><br>
+								<input id="productCountDisabled" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" disabled><br><br>
 							</div>
 							<div id="deleteActionContainer" th:class="not ${isElevatedUser}? hidden : ''">
 								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
@@ -60,10 +60,10 @@
 		<div class="productActionsWrapper">
 			<br />
 			<div id="deleteActionContainer" th:class="not ${isElevatedUser} ? hidden : ''">
-				<button id="deleteButton" type="button" class="action">Delete</button>
-				<br />
-				<br />
 				<button id="saveButton" type="button" class="action">Save</button>
+				<br />
+				<br />
+				<button id="deleteButton" type="button" class="action">Delete</button>
 			</div>
 			
 		</div>
