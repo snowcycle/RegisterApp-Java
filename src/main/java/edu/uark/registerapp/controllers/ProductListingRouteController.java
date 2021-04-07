@@ -18,37 +18,26 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @Controller
 @RequestMapping(value = "/productListing")
-public class ProductListingRouteController extends BaseRouteController{
+public class ProductListingRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView showProductListing(
-		final HttpServletRequest httpServletRequest
-	) {
-		final Optional<ActiveUserEntity> activeUserEntity =
-			this.getCurrentUser(httpServletRequest);
+	public ModelAndView showProductListing(final HttpServletRequest httpServletRequest) {
+		final Optional<ActiveUserEntity> activeUserEntity = this.getCurrentUser(httpServletRequest);
 
-			if (!activeUserEntity.isPresent()) {
-				return this.buildInvalidSessionResponse();
-			}
-
-		ModelAndView modelAndView =
-			new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName());
-
-		try {
-			modelAndView.addObject(
-				ViewModelNames.PRODUCTS.getValue(),
-				this.productsQuery.execute());
-		} catch (final Exception e) {
-			modelAndView.addObject(
-				ViewModelNames.ERROR_MESSAGE.getValue(),
-				e.getMessage());
-			modelAndView.addObject(
-				ViewModelNames.PRODUCTS.getValue(),
-				(new Product[0]));
+		if (!activeUserEntity.isPresent()) {
+			return this.buildInvalidSessionResponse();
 		}
 
-		modelAndView.addObject(ViewModelNames.IS_ELEVATED_USER.getValue(),
-			this.isElevatedUser(activeUserEntity.get()));
-		
+		ModelAndView modelAndView = new ModelAndView(ViewNames.PRODUCT_LISTING.getViewName());
+
+		try {
+			modelAndView.addObject(ViewModelNames.PRODUCTS.getValue(), this.productsQuery.execute());
+		} catch (final Exception e) {
+			modelAndView.addObject(ViewModelNames.ERROR_MESSAGE.getValue(), e.getMessage());
+			modelAndView.addObject(ViewModelNames.PRODUCTS.getValue(), (new Product[0]));
+		}
+
+		modelAndView.addObject(ViewModelNames.IS_ELEVATED_USER.getValue(), this.isElevatedUser(activeUserEntity.get()));
+
 		return modelAndView;
 	}
 
