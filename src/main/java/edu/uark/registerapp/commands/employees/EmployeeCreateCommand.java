@@ -12,6 +12,7 @@ import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.models.enums.EmployeeClassification;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
+// creates the command for employee query
 @Service
 public class EmployeeCreateCommand implements ResultCommandInterface<Employee> {
 	@Override

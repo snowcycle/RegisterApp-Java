@@ -31,6 +31,7 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	public UUID getEmployeeId() {
 		return this.employeeId;
 	}
+	// Query to the dataBase
 	public EmployeeQuery setEmployeeId(final UUID employeeId) {
 		this.employeeId = employeeId;
 		return this;
