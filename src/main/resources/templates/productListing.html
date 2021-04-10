@@ -12,6 +12,12 @@
 </head>
 
 <body>
+	<div id ="menuButton" class="container" onclick="goToMenu()">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	  </div>
+
 	<div class="header">
 		<h1 class="primary-message">Products Listing</h1>
 	</div>
@@ -22,7 +28,7 @@
 		</div>
 
 		<div class="productsWrapper">
-			<div>
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
 				<a href="/productDetail/" class="button">Create New</a>
 			</div>
 
@@ -53,6 +59,10 @@
 				}
 			</script>
 		</div>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer container" onclick="signOutActionClickHandler();"/>
 	</div>
 		
 </body>
