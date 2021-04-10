@@ -1,5 +1,8 @@
 package edu.uark.registerapp.commands.employees.helpers;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class EmployeeHelper {
